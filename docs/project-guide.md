@@ -71,7 +71,7 @@ concept](media/oneplus-7-port-concept.webp).
 
 ## Development setup
 
-Requirements: JDK 17, Android SDK Platform 37, Android Build Tools 36, and the
+Requirements: JDK 17, Android SDK Platform 36, Android Build Tools 36, and the
 Android Emulator. `mise.toml` selects the project Java runtime. Set
 `local.properties` to the local SDK path; this machine-specific file is ignored
 by Git.
@@ -106,8 +106,9 @@ Install onto a running emulator or attached Android device:
 mise exec -- ./gradlew :app:installDebug
 ```
 
-The local Android 17 virtual device is named `TAE_API_37`. After installation,
-select Tessarchy in Android's Default apps → Home app. The OnePlus 7 (standard
+The local Android 17 preview virtual device is named `TAE_API_37` and is used
+for visual comparison; CI runs on stable API 36. After installation, select
+Tessarchy in Android's Default apps → Home app. The OnePlus 7 (standard
 model, codename `guacamoleb`) is a later device target, not a tested release
 target. Preserve a recovery path and validate boot, radio, camera, audio,
 encryption, and update behavior before treating any system image as usable.

@@ -64,7 +64,7 @@ and what comes next.
 
 ## Build and run
 
-Requirements: JDK 17, Android SDK Platform 37, Android Build Tools 36, and the
+Requirements: JDK 17, Android SDK Platform 36, Android Build Tools 36, and the
 Android Emulator. `mise.toml` selects the project-local Java runtime. Create a
 local `local.properties` file that points to your Android SDK; Git ignores it.
 
@@ -79,8 +79,9 @@ mise exec -- ./gradlew :app:lintDebug
 mise exec -- ./gradlew :app:installDebug
 ```
 
-The development AVD is named `TAE_API_37`. After installation, select
-**Tessarchy** under Android Settings → Default apps → Home app. See the
+The local Android 17 preview AVD is named `TAE_API_37`; it is used for visual
+comparison. CI tests on stable API 36. After installation, select **Tessarchy**
+under Android Settings → Default apps → Home app. See the
 [project guide](docs/project-guide.md) for emulator setup and device notes.
 
 ## Development order

@@ -67,7 +67,7 @@ need and can be validated on a virtual device first.
 ## Platform baseline
 
 - `minSdk`: 31 (Android 12)
-- `compileSdk` and `targetSdk`: 37 (Android 17)
+- `compileSdk` and `targetSdk`: 36 (Android 16 stable)
 - Kotlin Compose compiler plugin: 2.4.21
 - Android Gradle Plugin: 9.4.1
 - Gradle: 9.8.2
@@ -76,8 +76,9 @@ need and can be validated on a virtual device first.
 ## Device strategy
 
 The standard OnePlus 7 (`guacamoleb`) is a later hardware target. Current
-prototype screenshots come from the Android 17 API 37 emulator and do not
-represent a tested OnePlus build. The stock-firmware Android 12 requirement is
+prototype screenshots come from the Android 17 API 37 preview emulator. It is
+used for visual comparison only; release builds target the stable Android 16
+API 36. Neither represents a tested OnePlus build. The stock-firmware Android 12 requirement is
 part of preparation for future ROM research; it does not set this launcher's
 minimum SDK or the Android version of a hypothetical later system image.
 

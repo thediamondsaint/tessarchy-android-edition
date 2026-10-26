@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "org.tessarchy.tae"
-    compileSdk = 37
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "org.tessarchy.tae"
         minSdk = 31
-        targetSdk = 37
+        targetSdk = 36
         versionCode = 1
         versionName = "0.1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
