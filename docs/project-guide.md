@@ -119,7 +119,8 @@ mise exec -- ./gradlew :app:installDebug
 ```
 
 The local Android 17 preview virtual device is named `TAE_API_37` and is used
-for visual comparison; CI runs on API 37. After installation, select
+for visual comparison and API 37 smoke testing; CI runs its smoke test on API 36
+while building the API 37 release. After installation, select
 Tessarchy in Android's Default apps → Home app. The OnePlus 7 (standard
 model, codename `guacamoleb`) is a later device target, not a tested release
 target. Preserve a recovery path and validate boot, radio, camera, audio,

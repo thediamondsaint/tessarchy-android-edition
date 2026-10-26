@@ -35,7 +35,7 @@ The current implementation separates app discovery, tile preferences, data persi
 ### Release-candidate checks completed
 
 19. **Verify core runtime behavior.** Release-candidate review on Android 17/API 37 covered the home grid, app drawer, personalization, and privacy disclosure. The Compose smoke test opens the Apps area, searches, and clears the query; it passes on the API 37 emulator.
-20. **Automate release checks.** GitHub Actions is configured to run lint, unit tests, a debug build, a minified release bundle, and the Compose smoke test on an API 37 Google APIs emulator. The latest workflow result is recorded after this change is pushed.
+20. **Automate release checks.** GitHub Actions runs lint, unit tests, a debug build, and a minified API 37 release bundle, then runs the Compose smoke test on an API 36 Google APIs emulator. API 36 is the newest emulator image reliably installable by the hosted runner action; the same smoke test has also passed locally on Android 17/API 37.
 
 Broader validation remains: Home-app selection, all external intents, Back behavior, wide layouts, keyboard navigation, accessibility review, and physical devices.
 
@@ -45,4 +45,4 @@ The most relevant Metro-specific repository found was GridLauncher (112 stars at
 
 ## Validation record
 
-The latest local `:app:lintDebug`, `:app:testDebugUnitTest`, `:app:assembleRelease`, and `:app:bundleRelease` checks pass on API 37. Lint reports no errors and two expected monochrome-icon warnings for the Android 12 base icon; the Android 13+ resource variant includes the monochrome layer. The connected smoke test passes on the Android 17/API 37 emulator. The API 37 GitHub Actions result will be recorded after this change is pushed. The signed release bundle and listing assets are prepared; Play Console declarations, physical-device review, and the account-specific testing track remain before production release.
+The latest local `:app:lintDebug`, `:app:testDebugUnitTest`, `:app:assembleRelease`, and `:app:bundleRelease` checks pass on API 37. Lint reports no errors and two expected monochrome-icon warnings for the Android 12 base icon; the Android 13+ resource variant includes the monochrome layer. The connected smoke test passes locally on Android 17/API 37; hosted CI runs it on API 36. The signed release bundle and listing assets are prepared; Play Console declarations, physical-device review, and the account-specific testing track remain before production release.
