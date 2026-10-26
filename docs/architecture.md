@@ -64,5 +64,5 @@ minimum SDK or the Android version of a hypothetical later system image.
 
 Before any device-specific system image is treated as usable, validate the
 bootloader and recovery path, encryption, radio, camera, audio, sensors,
-charging, thermal behavior, and update process. The [device port concept](../assets/concepts/oneplus-7-port-plan.svg)
+charging, thermal behavior, and update process. The [device port concept](media/oneplus-7-port-concept.webp)
 is a planning illustration, not a flashable build guide.

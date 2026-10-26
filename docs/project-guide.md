@@ -62,8 +62,8 @@ The longer-term system exploration is represented as layers:
 
 Each lower layer carries more maintenance and device risk. The project should
 earn deeper platform work by proving useful behavior at the launcher layer
-first. See [architecture notes](architecture.md) and the [OnePlus 7 bring-up
-concept](../assets/concepts/oneplus-7-port-plan.svg).
+first. See [architecture notes](architecture.html) and the [OnePlus 7 bring-up
+concept](media/oneplus-7-port-concept.webp).
 
 ## Development setup
 
@@ -98,7 +98,7 @@ encryption, and update behavior before treating any system image as usable.
 
 ## Current development sequence
 
-The 20-item audit backlog in [audit-roadmap.md](audit-roadmap.md) is the working
+The 20-item audit backlog in [audit-roadmap.html](audit-roadmap.html) is the working
 queue. The next practical steps are to establish shared design tokens, move
 tiles into a data model, and add editable layout and preference persistence.
 Automated test coverage and continuous integration follow as the interface
