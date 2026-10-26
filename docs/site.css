@@ -1560,3 +1560,79 @@ button {
   padding-bottom: 3px;
   font-weight: 700;
 }
+.tessa-demo-layout {
+  align-items: center;
+  border-top: 1px solid var(--line);
+  padding-top: 42px;
+  margin-top: 46px;
+}
+.tessa-demo-note {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100%;
+  padding: 30px 12px;
+}
+.tessa-demo-note h3 {
+  font-size: clamp(27px, 3vw, 40px);
+  line-height: 1.12;
+  letter-spacing: -0.05em;
+  margin: 18px 0 10px;
+}
+.tessa-demo-note > p {
+  font-size: 12px;
+  color: #aab7c3;
+  line-height: 1.8;
+  margin: 0;
+}
+.tessa-note-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 28px;
+  padding: 17px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.035);
+}
+.tessa-note-card span {
+  color: var(--teal);
+  font: 8px var(--mono);
+  letter-spacing: 0.12em;
+}
+.tessa-note-card strong {
+  color: #eff4f6;
+  font-size: 13px;
+}
+.tessa-note-card small {
+  color: #99aaba;
+  font-size: 10px;
+  line-height: 1.7;
+}
+@media (min-width: 901px) {
+  .home-shot,
+  .drawer-shot {
+    height: 560px;
+  }
+}
+@media (max-width: 680px) {
+  .tessa-demo-layout {
+    padding-top: 28px;
+    margin-top: 30px;
+  }
+  .tessa-demo-note {
+    padding: 3px 2px;
+  }
+}
+.gif-screen video {
+  display: block;
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  object-position: center 12%;
+}
+@media (max-width: 680px) {
+  .gif-screen video {
+    height: 190px;
+  }
+}

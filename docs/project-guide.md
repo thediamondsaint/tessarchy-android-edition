@@ -15,18 +15,26 @@ navy and mint frame the interface while cobalt, teal, orange, violet, and magent
 give individual tiles clear identities.
 
 The home experience should answer three questions quickly: what is happening
-now, what can I do next, and how do I get to the rest of my phone? The launcher
-must remain accessible, responsive to screen size and font scale, and compatible
-with Android apps and services.
+now, what can I do next, and how do I get to the rest of my phone? The future
+tile direction is glassy, image-backed, interactive, and useful at a glance.
+A creator gallery should let people shape tiles and widgets. The bottom Window
+Tape is a prototype for moving across Tessarchy spaces; arbitrary side-by-side
+Android apps require deeper platform support.
+
+Tessa is planned as a user-chosen assistant across Tessarchy. The provider
+adapter, tile/settings action catalog, and Android assistant entry point are
+future work. The long-range goal is a rooted AOSP system with much deeper AI
+control; the current app remains a regular Android launcher.
 
 ## What is built today
 
 The Android app is a Jetpack Compose launcher that can be selected as the
 Android Home app and currently includes:
 
-- a live clock and date;
-- Metro-style colored calendar, phone, messages, Tessa, photos, music, and Apps
-  tiles;
+- a live clock and date in a compact Tessarchy header;
+- glass image-backed Metro tiles for calendar, phone, messages, Tessa, photos,
+  music, the Tessarchy home, and Apps;
+- a Window Tape prototype that scrubs between Home, Apps, Tessa, and Studio;
 - Android intents for common phone actions;
 - a searchable list of installed launchable apps with their application icons;
 - loading, empty, and no-match drawer states;
@@ -35,25 +43,29 @@ Android Home app and currently includes:
 - a wider four-column grid and accessible tile movement actions;
 - localized UI strings and accessible control semantics.
 
-The emulator captures in `../artifacts/` show the running prototype. The images
-in `../assets/concepts/` are design explorations; they are not screenshots of
-implemented features. The concept gallery on the project page labels these
-separately.
+The current emulator captures and interaction recording are in `media/`. The
+hero and system-stack artwork are design explorations; they are not screenshots
+of implemented features. The project page keeps those concepts separate from
+running UI.
 
 ## What this project is not yet
 
 The current build is an app, not a replacement Android operating system. It
 does not replace the lock screen, System UI, settings, notification shade,
-kernel, vendor services, or firmware. It does not yet provide calendar or
-message live content, third-party widget hosting, an import/export settings
-flow, or a Tessarchy system image. Those are future investigations, not current
+kernel, vendor services, or firmware. It does not yet provide live calendar or
+message content, third-party widget hosting, AI provider connections,
+assistant-controlled settings, arbitrary side-by-side Android app windows, or a
+Tessarchy system image. Those are future investigations, not current
 capabilities.
 
 ## Technical shape
 
-The current application is a Kotlin and Jetpack Compose Android app. Android
+The current application is a Kotlin and Jetpack Compose Android app. Its bottom
+Window Tape is an in-app navigation prototype, not a window manager. Android
 continues to own device services, package management, permissions, telephony,
-and application lifecycle. TAE provides the home surface and launcher behavior.
+and application lifecycle. A future assistant layer should expose explicit
+Tessarchy actions; deeper system-level AI control would require a supported
+rooted/AOSP build.
 
 The longer-term system exploration is represented as layers:
 

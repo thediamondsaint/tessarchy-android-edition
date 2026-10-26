@@ -190,8 +190,9 @@
               <h2>Real Android.<br /><span>Real Tessarchy.</span></h2>
               <p>
                 The current app is a Kotlin Compose Android launcher. These captures show
-                build 0.1.0 running in the Android 17 preview emulator and were refreshed
-                on October 26, 2026.
+                build 0.1.0 on a tall Android 17 preview emulator and were refreshed on
+                October 26, 2026. Glass image tiles and the launcher section tape now run
+                in the app; live AI, widgets, and system-level app windows remain future work.
               </p>
             </div>
             <div class="build-tag">
@@ -211,14 +212,13 @@
                 rel="noreferrer"
                 ><img
                   src="media/tae-home.webp"
-                  alt="Actual emulator screenshot of the Tessarchy home launcher with a live clock and colored app tiles"
+                  alt="Current Android 17 emulator screenshot of Tessarchy with a compact live clock, glass image-backed tiles, Tessa preview tile, and bottom Window Tape"
                   loading="lazy"
               /></a>
               <div class="demo-caption">
                 <h3>One screen, clear signals.</h3>
                 <p>
-                  Time and date set the rhythm. Reorder, resize, or hide tiles,
-                  then choose Midnight, Daylight, or Cobalt for the frame.
+                  The live clock and date lead into glass image tiles. Reorder, resize, or hide tiles, then choose Midnight, Daylight, or Cobalt.
                 </p>
               </div>
             </div>
@@ -279,25 +279,23 @@
                 rel="noreferrer"
                 ><img
                   src="media/tae-home-scroll-release-candidate.webp"
-                  alt="Actual emulator screenshot of the scrolled Tessarchy home screen, showing Tessa, Photos, Music, and the Apps tile"
+                  alt="Current Android 17 emulator screenshot of the scrolled Tessarchy launcher with image tiles and the persistent bottom Window Tape"
                   loading="lazy"
               /></a>
               <div class="demo-caption">
                 <h3>Built to keep going.</h3>
                 <p>
-                  Scroll the tile grid to reach the current home items and searchable app
-                  drawer. This is the home grid, not the future Window Tape.
+                  Scroll to Photos, Music, and the app library. Window Tape stays anchored at the bottom as you move through the launcher.
                 </p>
               </div>
             </aside>
           </div>
           <div class="gif-row">
             <div class="gif-copy">
-              <span class="mono-label">INTERACTION CAPTURE / 13 SEC</span>
+              <span class="mono-label">INTERACTION CAPTURE / 15 SEC</span>
               <h3>Tap Tessa.<br />Scroll the tiles.</h3>
               <p>
-                A short emulator recording shows the current launcher interaction model.
-                It does not yet show the proposed side-by-side Window Tape.
+                This capture shows the Window Tape prototype: swipe or tap between Home, Apps, Tessa, and Studio. Side-by-side control of arbitrary Android app windows remains a longer-term system goal.
               </p>
               <a class="arrow-link arrow-light" href="media/tae-scroll-tap.mp4"
                 >Watch the full MP4 <span>↗</span></a
@@ -308,12 +306,30 @@
               href="media/tae-scroll-tap.gif"
               target="_blank"
               rel="noreferrer"
-              ><img
-                src="media/tae-scroll-tap.gif"
-                alt="Animated emulator capture showing the Tessarchy launcher scroll and a Tessa tile tap"
-                loading="lazy"
-              /><span class="play-badge" aria-hidden="true">↗</span></a
+              ><video autoplay muted loop playsinline preload="metadata" poster="media/tae-home.webp" aria-label="Window Tape interaction recording showing a swipe and navigation among Tessarchy launcher spaces">
+                <source src="media/tae-scroll-tap.mp4" type="video/mp4" />
+              </video><span class="play-badge" aria-hidden="true">↗</span></a
             >
+          </div>
+          <div class="demo-layout tessa-demo-layout">
+            <div class="demo-main">
+              <div class="image-label">
+                <span>05 / TESSA PREVIEW</span><span>ACTUAL UI · NO PROVIDER CONNECTED</span>
+              </div>
+              <a class="screenshot-frame home-shot" href="media/tae-tessa-preview.webp" target="_blank" rel="noreferrer">
+                <img src="media/tae-tessa-preview.webp" alt="Tessarchy's Tessa preview screen showing a future agent interface, provider choices, and an example of controlling Tessarchy tiles and settings; no AI provider is connected" loading="lazy" />
+              </a>
+              <div class="demo-caption">
+                <h3>Tessa is taking shape.</h3>
+                <p>The interface previews provider choice and a shared Tessarchy action layer. It is a real screen in the app; the assistant itself is not connected yet.</p>
+              </div>
+            </div>
+            <aside class="demo-side tessa-demo-note">
+              <span class="mono-label">THE FUTURE AGENT SURFACE</span>
+              <h3>One Tessa.<br />Your choice of agent.</h3>
+              <p>ChatGPT, Claude, Grok, and additional providers are shown as direction. A future provider adapter would connect the selected service to named Tessarchy actions for tiles, layouts, and settings.</p>
+              <div class="tessa-note-card"><span>AVAILABLE IN BUILD 0.1.0</span><strong>Screen design only</strong><small>Provider connection, voice input, and agent-controlled settings are not implemented.</small></div>
+            </aside>
           </div>
         </div>
       </section>

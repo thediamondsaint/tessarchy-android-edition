@@ -1,12 +1,9 @@
 # Tessarchy Android Edition
 
-**A Metro-inspired Android launcher experiment for a more personal phone.**
+**An agent-first Tessarchy experience, starting with a Metro-inspired Android launcher.**
 
 Tessarchy Android Edition (TAE) explores how Tessarchy could become the primary
-experience on an Android device. The visual direction combines Metro's strong
-grid, generous typography, quick-glance information, and saturated color with
-Tessarchy's navy and mint identity. Android continues to provide the device,
-application, and system foundations.
+experience on an Android device. The visual direction combines Metro's strong grid and generous type with image-backed glass tiles, compact real-world details, and Tessarchy's navy and mint identity. The longer-term direction adds a user-chosen AI provider and deeper Android/AOSP integration.
 
 > **Project stage:** launcher release-candidate work in progress. The current
 > deliverable is an Android launcher app, not a custom Android operating system
@@ -21,7 +18,10 @@ layers, and development sequence.
 ## What runs today
 
 - A Jetpack Compose app that can be selected as Android's Home app.
-- A live clock and date above a Metro-style grid of colored rectangular tiles.
+- A live clock and date beside the Tessarchy mark.
+- Rounded, image-backed glass Metro tiles for Tessarchy, calendar, phone, messages, Tessa, photos, music, and the app library.
+- A compact Tessa assistant-preview tile and a provider-neutral concept screen; no AI provider is connected yet.
+- A bottom Window Tape prototype that switches among Home, Apps, Tessa, and Studio. Arbitrary Android app windows do not yet scroll side by side.
 - Phone, messages, calendar, photos, music, and Tessa launcher actions.
 - A searchable drawer of installed launcher apps with their actual app icons.
 - Loading, no-app, and no-search-match states in the drawer.
@@ -34,17 +34,13 @@ layers, and development sequence.
   identity for apps that expose multiple launcher entries.
 - Localized string resources, accessible control names, and adaptive app icons.
 
-The **real emulator screenshots and interaction recording** are in [`artifacts/`](artifacts/).
-The **design concepts** are in [`assets/concepts/`](assets/concepts/) and are
-clearly labeled as explorations; they do not represent implemented features.
+The **current emulator screenshots and interaction recording** are in [`docs/media/`](docs/media/). The **design concepts** are also kept in that folder and labeled as explorations; they do not represent implemented features.
 
 ## What we are making
 
 The first layer is a useful Tessarchy home and app-navigation experience. The
 current launcher can be personalized and keeps those choices across launches.
-Live content, widgets, additional system surfaces, and deeper Android or AOSP
-changes remain later investigations because each layer adds device and
-maintenance work.
+The next layers are tile and widget creation tools, live tile data, and a provider adapter that exposes named Tessarchy actions to a chosen assistant. Android app and system access needs supported APIs or explicit bridges. A rooted AOSP system with deeper AI control is the long-range goal, not a current capability.
 
 The project direction, implementation boundary, platform strategy, setup, and
 contribution notes are in the [project guide](docs/project-guide.md). The
@@ -56,10 +52,11 @@ and what comes next.
 
 ## Metro direction
 
-- Use flat, high-contrast color blocks to make actions easy to find.
-- Keep a consistent modular grid and restrained rounded corners.
-- Make type and live information part of the layout, not decoration.
-- Let users shape the order, size, and emphasis of their tiles.
+- Use image-backed glass tiles with rounded corners, restrained translucency, and clear type.
+- Keep the modular Metro grid glanceable; let tile size and imagery give information room.
+- Show real stats where available, and never invent app counts or activity.
+- Keep Tessa and user-created widgets close to the home surface.
+- Use Window Tape to move between adjacent phone contexts with a continuous gesture.
 - Keep Tessarchy's navy and mint frame calm around the brighter tile field.
 
 ## Build and run
