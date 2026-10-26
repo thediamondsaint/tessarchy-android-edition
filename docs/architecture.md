@@ -15,15 +15,34 @@ or a OnePlus 7 ROM.
 ## Runtime flow
 
 1. Android launches `MainActivity` as the selected Home activity.
-2. Compose renders the clock, calendar date, tiles, and app drawer.
-3. Android package APIs provide launchable app labels and icons.
-4. Tile actions use Android intents so the system can route calls, messages,
+2. On activity resume, package APIs enumerate launcher activities off the main
+   thread. Entries use component identity and bounded icon bitmaps.
+3. Compose renders the clock, calendar date, configurable Metro tiles, and app
+   drawer.
+4. Preferences DataStore stores tile order, hidden tiles, tile widths, and the
+   selected palette. Android backup rules include those preferences.
+5. Tile actions use Android intents so the system can route calls, messages,
    calendar, media, and content requests to installed apps.
-5. Android services and the device vendor stack continue to run underneath.
+6. Android services and the device vendor stack continue to run underneath.
 
-The installed-app query runs away from the main thread. UI strings use Android
-resources, locale-aware date formatting observes configuration changes, and
-interactive surfaces expose button semantics to accessibility services.
+The installed-app query runs away from the main thread. The app drawer refreshes
+when the launcher resumes. UI strings use Android resources, locale-aware date
+formatting observes configuration changes, and tile reorder controls provide
+both drag handles and TalkBack move actions.
+
+## Current launcher features
+
+- Three local palettes: Midnight, Daylight, and Cobalt.
+- Optional tiles can be hidden, resized, and moved; the Apps tile remains
+  available so the user can always reach installed apps.
+- Two-column phone layout and four-column layout when the available width is at
+  least 640 dp.
+- Searchable app drawer with component-specific app entries and actual icons.
+- The Tessa surface clearly marks assistant functionality as a future feature.
+
+The first release does not host third-party widgets, read calendar events, or
+change Android System UI. App tiles delegate to installed system apps through
+intents and do not request phone or SMS permissions.
 
 ## Layering strategy
 

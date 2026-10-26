@@ -8,8 +8,9 @@ grid, generous typography, quick-glance information, and saturated color with
 Tessarchy's navy and mint identity. Android continues to provide the device,
 application, and system foundations.
 
-> **Project stage:** early prototype. The current deliverable is an Android
-> launcher app, not a custom Android operating system or a OnePlus 7 ROM.
+> **Project stage:** launcher release-candidate work in progress. The current
+> deliverable is an Android launcher app, not a custom Android operating system
+> or a OnePlus 7 ROM.
 
 ## Project page
 
@@ -24,7 +25,14 @@ layers, and development sequence.
 - Phone, messages, calendar, photos, music, and Tessa launcher actions.
 - A searchable drawer of installed launcher apps with their actual app icons.
 - Loading, no-app, and no-search-match states in the drawer.
-- Localized string resources and accessible button semantics.
+- Metro tiles that can be hidden, resized, reordered, and recolored with three
+  saved themes.
+- Drag reorder and accessible move actions, with a four-column layout on wider
+  windows.
+- Settings saved locally with AndroidX DataStore and included in Android backup.
+- App discovery refreshed when returning to the launcher, with per-activity
+  identity for apps that expose multiple launcher entries.
+- Localized string resources, accessible control names, and adaptive app icons.
 
 The **real emulator screenshots and interaction recording** are in [`artifacts/`](artifacts/).
 The **design concepts** are in [`assets/concepts/`](assets/concepts/) and are
@@ -32,16 +40,19 @@ clearly labeled as explorations; they do not represent implemented features.
 
 ## What we are making
 
-The first layer is a useful Tessarchy home and app-navigation experience. From
-there, the project can explore editable tile layouts, saved preferences, live
-content, and additional system surfaces. Deeper Android and AOSP changes remain
-later investigations because each layer adds device and maintenance work.
+The first layer is a useful Tessarchy home and app-navigation experience. The
+current launcher can be personalized and keeps those choices across launches.
+Live content, widgets, additional system surfaces, and deeper Android or AOSP
+changes remain later investigations because each layer adds device and
+maintenance work.
 
 The project direction, implementation boundary, platform strategy, setup, and
 contribution notes are in the [project guide](docs/project-guide.md). The
 [architecture notes](docs/architecture.md) describe the application and system
-layers. The [20-item code audit and improvement roadmap](docs/audit-roadmap.md)
-records what has been fixed and what comes next.
+layers. The [30-area GitHub research survey](docs/github-research.md) records
+the reference projects, star snapshots, and license review. The [20-item code
+audit and improvement roadmap](docs/audit-roadmap.md) records what has been fixed
+and what comes next.
 
 ## Metro direction
 
@@ -74,10 +85,10 @@ The development AVD is named `TAE_API_37`. After installation, select
 
 ## Development order
 
-The next work is to centralize design tokens, represent tiles as data, and add
-editable layouts and preference persistence. Live content, keyboard behavior,
-accessibility across screen sizes, automated coverage, and CI follow as the
-interaction model settles. The full sequence is maintained in the roadmap.
+The next work is to finish emulator checks across screen sizes, add Compose UI
+coverage and CI, and refine accessibility and keyboard navigation. A Play Store
+release will need separate listing, signing, policy, and device-compatibility
+work. The full sequence is maintained in the roadmap.
 
 ## License
 

@@ -1,74 +1,46 @@
 # TAE code audit and improvement roadmap
 
 Audit date: 2026-10-26
-Scope: Android launcher source, manifest, Gradle setup, and first emulator prototype.
+Scope: Android launcher source, manifest, build configuration, and emulator-ready release candidate.
 
 ## Audit summary
 
-The app is a small, understandable Compose launcher prototype. Its main flow works
-on the Android 17 emulator: the home screen renders, the Tessa tile responds, and
-the app drawer opens and searches installed launchable apps.
+The initial implementation was a compact Compose prototype with launcher discovery, a fixed tile grid, and a basic app list. The audit found that activity discovery ran only at startup, app activities could be collapsed by package name, tile layout and theme were fixed, there was no persistent settings model, and the primary UI was concentrated in one activity. It also had no automated tests or CI.
 
-The first Android Lint run found three locale errors and six warnings. The errors
-were caused by reading the process default locale directly from a composable. The
-warnings covered outdated Gradle and Kotlin patch versions, a Compose modifier
-parameter order, redundant orientation settings, explicit legacy backup policy,
-and a URI helper.
+The current implementation separates app discovery, tile preferences, data persistence, design tokens, and the launcher screens. Release-candidate status still depends on emulator interaction checks, screen-size review, CI, and a wider accessibility pass.
 
-## 20 improvements
+## 20 improvement areas
 
-### Fixed in this pass
+### Implemented in this pass
 
-1. **Observe locale changes in Compose.** Read the locale from
-   `LocalConfiguration` so date formatting updates when the device language
-   changes.
-2. **Show installed app icons.** Render each launchable package’s actual icon in
-   the drawer instead of repeating a letter tile.
-3. **Handle app-list loading and empty results.** The drawer now distinguishes
-   loading, no available apps, and no search matches.
-4. **Add accessible tile roles.** Clickable home tiles and app rows expose button
-   semantics and merged labels.
-5. **Move UI copy into Android resources.** User-visible labels and feedback now
-   have a string-resource home for translation.
-6. **Correct the Phone tile symbol.** It now uses a phone glyph rather than a
-   search-like mark; the SMS intent uses a constructed `smsto:` URI.
-7. **Use AndroidX edge-to-edge handling.** This replaces deprecated direct system
-   bar color setters while retaining safe-drawing insets.
-8. **Let Android recreate the activity for display changes.** Removed the
-   unnecessary `configChanges` and explicit `unspecified` orientation settings.
+1. **Centralize visual tokens.** Three Metro palettes plus shared spacing, radius, and type tokens are in `ui/theme`.
+2. **Represent tiles as stable data.** `TileId` contains title, identity, default width, and required-tile behavior.
+3. **Edit tile visibility.** Personalization can hide optional tiles; the app drawer tile stays available.
+4. **Resize and reorder tiles.** Width switches, drag reorder, and accessible earlier/later actions are implemented.
+5. **Persist launcher choices.** Preferences DataStore saves order, hidden tiles, width, and theme.
+6. **Recover malformed or old settings.** Preference sanitization restores missing tile IDs and required tile constraints.
+7. **Refresh installed activities.** App discovery runs off the main thread on activity resume.
+8. **Preserve multiple app entries.** Drawer items use `ComponentName` identity, not package-only identity.
+9. **Bound icon memory use.** App icon bitmaps are capped at 96 px before conversion.
+10. **Improve app search.** Drawer search supports the IME, clear action, empty state, and no-match feedback.
+11. **Adapt to wide windows.** The grid uses four columns above 640 dp and two columns on narrower windows.
+12. **Improve accessibility semantics.** Tiles, app rows, search, personalization, and reorder controls expose labels or actions.
+13. **Make the Tessa boundary clear.** The Tessa screen explains that assistant functionality is not part of this launcher build.
+14. **Use system intents for phone tasks.** Phone, messaging, calendar, music, and photo actions delegate to Android apps.
+15. **Use adaptive launcher icon resources.** Android 8+ adaptive and round icon resource entries are defined.
+16. **Configure user-data backup.** DataStore preferences are included in cloud backup and device-transfer rules.
+17. **Add preference-model unit tests.** Tests cover order changes, invalid moves, required tiles, and preference sanitization.
+18. **Document the external research.** A 30-area survey records examples, star snapshots, and license decisions in [`github-research.md`](github-research.md).
 
-### Next development items
+### Remaining before calling the launcher release candidate
 
-9. **Centralize the visual system.** Move colors, type scale, tile radii, and
-   spacing into a Compose theme and shared design tokens.
-10. **Represent tiles as data.** Separate tile identity, label, action, color, and
-    size from the home-screen layout code.
-11. **Make the home grid editable.** Add a layout mode for moving, resizing,
-    adding, and removing tiles.
-12. **Persist launcher preferences.** Store tile arrangement and theme settings,
-    then define Android cloud-backup and device-transfer rules for that data.
-13. **Give live tiles real data sources.** Connect calendar, messages, media, and
-    Tessa tiles to useful system or app state.
-14. **Replace prototype glyphs and app branding.** Build a consistent Tessarchy
-    icon set and an adaptive Android launcher icon.
-15. **Support the IME in app search.** Keep the search field and results usable
-    when the keyboard is visible, and add clear/submit actions.
-16. **Adapt to large text and varied screens.** Check font scaling, landscape,
-    tablets, cutouts, and narrow phone widths; remove fixed-height clipping.
-17. **Improve system navigation behavior.** Refine Home and Back behavior, focus
-    order, keyboard navigation, and the Android launcher-role selection flow.
-18. **Add automated app coverage.** Add unit tests for tile filtering and intent
-    selection plus Compose tests for home, drawer, and empty states.
-19. **Run checks on every change.** Add GitHub Actions for lint, debug builds, and
-    tests on pull requests.
-20. **Prepare device and release work.** Establish versioning/signing policy, then
-    document recovery-safe OnePlus 7 (`guacamoleb`) bring-up and ROM validation.
+19. **Verify runtime behavior.** Install on the API 37 emulator, exercise Home selection, intents, app drawer search, settings persistence, and Back behavior; review screenshots at phone and wide layouts.
+20. **Automate the release checks.** Add a tested emulator UI suite and GitHub Actions for lint, unit tests, debug build, and emulator interaction tests.
 
-## Validation
+## Research and reuse notes
 
-The initial `:app:lintDebug` run found three locale errors and six warnings. The
-first correction pass removed those issues; a follow-up pass also addressed the
-remaining Compose modifier-order and Android KTX warnings. The current audit
-validation runs `:app:lintDebug` and `:app:assembleDebug`; do not treat emulator
-performance on this host as a release device benchmark. No automated test suite
-exists yet.
+The most relevant Metro-specific repository found was GridLauncher (112 stars at the survey snapshot). General launcher references are much larger, including Lawnchair (13,786 stars), Kvaesitso (5,315), Olauncher (3,914), and KISS (3,523). Several use GPL licenses or lack clear license metadata, so they are reference-only. TAE uses the Apache-2.0 Reorderable library as a dependency and otherwise keeps its implementation original.
+
+## Validation record
+
+The latest `:app:testDebugUnitTest`, `:app:lintDebug`, `:app:assembleDebug`, and `:app:compileDebugAndroidTestKotlin` checks pass. Lint reports one warning for the version qualifier on the adaptive icon resources. Manual API 37 emulator review covered home, app drawer, personalization, and theme persistence across an app restart. The Compose UI test compiles, but Espresso cannot run it on this API 37 image because it reflects on the removed `InputManager.getInstance` method; CI is configured to run it on API 35. Do not describe the app as Play Store-ready: store policy review, signing, privacy disclosures, target API compliance, release assets, and wider device validation are separate tasks.

@@ -21,7 +21,7 @@ with Android apps and services.
 
 ## What is built today
 
-The Android app is a Compose launcher prototype. It can be selected as the
+The Android app is a Jetpack Compose launcher that can be selected as the
 Android Home app and currently includes:
 
 - a live clock and date;
@@ -30,7 +30,10 @@ Android Home app and currently includes:
 - Android intents for common phone actions;
 - a searchable list of installed launchable apps with their application icons;
 - loading, empty, and no-match drawer states;
-- localized UI strings and accessible button semantics.
+- three Metro palettes and editable tile visibility, size, and order;
+- local settings persistence with AndroidX DataStore and Android backup rules;
+- a wider four-column grid and accessible tile movement actions;
+- localized UI strings and accessible control semantics.
 
 The emulator captures in `../artifacts/` show the running prototype. The images
 in `../assets/concepts/` are design explorations; they are not screenshots of
@@ -41,9 +44,10 @@ separately.
 
 The current build is an app, not a replacement Android operating system. It
 does not replace the lock screen, System UI, settings, notification shade,
-kernel, vendor services, or firmware. It does not yet provide editable tiles,
-live calendar or message content, backup and restore, or a Tessarchy system
-image. Those are future investigations, not current capabilities.
+kernel, vendor services, or firmware. It does not yet provide calendar or
+message live content, third-party widget hosting, an import/export settings
+flow, or a Tessarchy system image. Those are future investigations, not current
+capabilities.
 
 ## Technical shape
 
@@ -84,6 +88,18 @@ Run Android Lint:
 mise exec -- ./gradlew :app:lintDebug
 ```
 
+Run the preference model tests:
+
+```sh
+mise exec -- ./gradlew :app:testDebugUnitTest
+```
+
+Run the Compose smoke test on an available emulator:
+
+```sh
+mise exec -- ./gradlew :app:connectedDebugAndroidTest
+```
+
 Install onto a running emulator or attached Android device:
 
 ```sh
@@ -98,11 +114,10 @@ encryption, and update behavior before treating any system image as usable.
 
 ## Current development sequence
 
-The 20-item audit backlog in [audit-roadmap.html](audit-roadmap.html) is the working
-queue. The next practical steps are to establish shared design tokens, move
-tiles into a data model, and add editable layout and preference persistence.
-Automated test coverage and continuous integration follow as the interface
-stabilizes. Device-specific system work stays later in the sequence.
+The 20-item audit in [audit-roadmap.html](audit-roadmap.html) tracks the current
+release-candidate checks and remaining work. GitHub Actions runs lint, unit
+tests, a debug build, and an emulator smoke test on pushes to `main` and pull
+requests. Device-specific system work stays later in the sequence.
 
 ## Project principles
 
