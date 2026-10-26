@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#101a2a" />
+    <meta
+      name="description"
+      content="Tessarchy Android Edition is a Metro-inspired Android launcher and an exploration of a more personal phone experience."
+    />
+    <meta property="og:title" content="Tessarchy Android Edition" />
+    <meta
+      property="og:description"
+      content="A more personal Android, shaped by Tessarchy and the Metro design language."
+    />
+    <meta property="og:type" content="website" />
+    <title>Tessarchy Android Edition — A more personal Android</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="site.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Tessarchy Android Edition home">
+        <span class="brand-mark" aria-hidden="true"
+          ><i></i><i></i><i></i><i></i
+        ></span>
+        <span>TESSARCHY <b>ANDROID EDITION</b></span>
+      </a>
+      <button
+        class="menu-toggle"
+        aria-expanded="false"
+        aria-controls="site-nav"
+      >
+        Menu
+      </button>
+      <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+        <a href="#direction">Direction</a>
+        <a href="#prototype">Prototype</a>
+        <a href="#concepts">Concepts</a>
+        <a href="#roadmap">Roadmap</a>
+        <a
+          class="nav-github"
+          href="https://github.com/thediamondsaint/tessarchy-android-edition"
+          >GitHub <span aria-hidden="true">↗</span></a
+        >
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top">
+        <div class="hero-copy">
+          <p class="eyebrow">
+            <span class="live-dot"></span> AN OPEN ANDROID EXPERIMENT
+            <span class="eyebrow-sep">/</span> BUILD 0.1
+          </p>
+          <h1>Your phone.<br /><span>Recomposed.</span></h1>
+          <p class="hero-deck">
+            Tessarchy Android Edition brings a vivid, glanceable Metro language
+            to Android, then asks how much more personal a phone can become.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-light" href="#prototype"
+              >Explore the prototype <span aria-hidden="true">↓</span></a
+            >
+            <a
+              class="text-link"
+              href="https://github.com/thediamondsaint/tessarchy-android-edition"
+              >View the source <span aria-hidden="true">↗</span></a
+            >
+          </div>
+          <div class="hero-facts" aria-label="Project status">
+            <div>
+              <strong>Android 17</strong><span>emulator prototype</span>
+            </div>
+            <div>
+              <strong>Metro inspired</strong><span>color, grid, motion</span>
+            </div>
+            <div>
+              <strong>Public repository</strong
+              ><span>development in public</span>
+            </div>
+          </div>
+        </div>
+        <div
+          class="hero-art"
+          aria-label="Concept artwork showing a Metro-style Tessarchy Android home screen"
+        >
+          <div class="art-orbit orbit-one"></div>
+          <div class="art-orbit orbit-two"></div>
+          <img
+            src="media/metro-home-concept.webp"
+            alt="Concept artwork of a phone with a modular grid of bright blue, teal, orange, violet, and magenta launcher tiles"
+            fetchpriority="high"
+          />
+          <div class="art-note">
+            <span>DESIGN CONCEPT</span><b>Metro, made Tessarchy.</b>
+          </div>
+          <span class="art-index">01 <i>/</i> 04</span>
+        </div>
+        <div class="hero-scroll"><span></span> SCROLL TO EXPLORE</div>
+      </section>
+
+      <section class="ticker" aria-label="Design principles">
+        <div class="ticker-track">
+          <span>LIVE TILES</span><b>✳</b><span>COLOR WITH PURPOSE</span
+          ><b>✳</b><span>ONE GLANCE AHEAD</span><b>✳</b
+          ><span>BUILT AROUND YOU</span><b>✳</b><span>LIVE TILES</span><b>✳</b
+          ><span>COLOR WITH PURPOSE</span><b>✳</b><span>ONE GLANCE AHEAD</span
+          ><b>✳</b><span>BUILT AROUND YOU</span><b>✳</b>
+        </div>
+      </section>
+
+      <section class="section intro-section" id="direction">
+        <div class="section-kicker">
+          <span>01</span><span>THE DIRECTION</span>
+        </div>
+        <div class="intro-layout">
+          <h2>A calmer grid.<br />A brighter signal.</h2>
+          <div class="intro-body">
+            <p>
+              Metro made the home screen feel like a living surface:
+              typographic, direct, and full of color. Tessarchy takes that
+              clarity and gives it a new job — to make a phone feel like a
+              workspace that belongs to you.
+            </p>
+            <p>
+              Tiles bring the most useful things forward. Their color signals
+              where to look. Their size gives information room to breathe. The
+              surrounding interface stays quiet, so the content can speak.
+            </p>
+            <a class="arrow-link" href="project-guide.html"
+              >Read the product and technical guide <span>↗</span></a
+            >
+          </div>
+        </div>
+        <div class="principles-grid">
+          <article class="principle-card">
+            <span class="principle-no">01 / GLANCE</span>
+            <div class="mini-clock">09<span>:</span>41</div>
+            <h3>Information up front</h3>
+            <p>Time, date, and activity have a place on the home screen.</p>
+          </article>
+          <article class="principle-card tile-card">
+            <span class="principle-no">02 / COLOR</span>
+            <div class="mini-tiles" aria-hidden="true">
+              <i></i><i></i><i></i><i></i><i></i>
+            </div>
+            <h3>Color with a reason</h3>
+            <p>
+              Distinct tiles give actions and information their own visual
+              address.
+            </p>
+          </article>
+          <article class="principle-card">
+            <span class="principle-no">03 / SPACE</span>
+            <div class="mini-type">Type<br />is the<br />interface.</div>
+            <h3>Type that leads</h3>
+            <p>
+              Strong hierarchy keeps the screen readable at a distance and in
+              motion.
+            </p>
+          </article>
+          <article class="principle-card">
+            <span class="principle-no">04 / AGENCY</span>
+            <div class="mini-grid">
+              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+            <h3>A system you can shape</h3>
+            <p>The direction is a phone that adapts to the person using it.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="prototype-section" id="prototype">
+        <div class="section dark-section">
+          <div class="section-kicker">
+            <span>02</span><span>RUNNING TODAY</span
+            ><span class="status-pill"><i></i> WORKING PROTOTYPE</span>
+          </div>
+          <div class="prototype-heading">
+            <div>
+              <h2>Real Android.<br /><span>Real Tessarchy.</span></h2>
+              <p>
+                This is the first working layer: a Compose launcher running on
+                the Android 17 emulator.
+              </p>
+            </div>
+            <div class="build-tag">
+              <span>APP BUILD</span><strong>0.1.0</strong
+              ><span>MINIMUM SDK 31</span>
+            </div>
+          </div>
+          <div class="demo-layout">
+            <div class="demo-main">
+              <div class="image-label">
+                <span>01 / HOME</span><span>EMULATOR CAPTURE · API 37</span>
+              </div>
+              <a
+                class="screenshot-frame home-shot"
+                href="media/tae-home.webp"
+                target="_blank"
+                rel="noreferrer"
+                ><img
+                  src="media/tae-home.webp"
+                  alt="Actual emulator screenshot of the Tessarchy home launcher with a live clock and colored app tiles"
+                  loading="lazy"
+              /></a>
+              <div class="demo-caption">
+                <h3>One screen, clear signals.</h3>
+                <p>
+                  Time and date set the rhythm. Flat color tiles make everyday
+                  actions easy to spot.
+                </p>
+              </div>
+            </div>
+            <aside class="demo-side">
+              <div class="image-label">
+                <span>02 / APP DRAWER</span><span>SEARCH + ICONS</span>
+              </div>
+              <a
+                class="screenshot-frame drawer-shot"
+                href="media/tae-apps-drawer.webp"
+                target="_blank"
+                rel="noreferrer"
+                ><img
+                  src="media/tae-apps-drawer.webp"
+                  alt="Actual emulator screenshot of the searchable installed apps drawer, showing application icons beside each app name"
+                  loading="lazy"
+              /></a>
+              <div class="demo-caption">
+                <h3>Every app still belongs.</h3>
+                <p>
+                  Search installed Android apps and launch them from the same
+                  visual system.
+                </p>
+              </div>
+            </aside>
+          </div>
+          <div class="gif-row">
+            <div class="gif-copy">
+              <span class="mono-label">INTERACTION CAPTURE / 13 SEC</span>
+              <h3>Tap Tessa.<br />Scroll the tiles.</h3>
+              <p>
+                A short recording from the emulator shows the current
+                interaction model in motion.
+              </p>
+              <a class="arrow-link arrow-light" href="media/tae-scroll-tap.mp4"
+                >Watch the full MP4 <span>↗</span></a
+              >
+            </div>
+            <a
+              class="gif-screen"
+              href="media/tae-scroll-tap.gif"
+              target="_blank"
+              rel="noreferrer"
+              ><img
+                src="media/tae-scroll-tap.gif"
+                alt="Animated emulator capture showing the Tessarchy launcher scroll and a Tessa tile tap"
+                loading="lazy"
+              /><span class="play-badge" aria-hidden="true">↗</span></a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="section concept-section" id="concepts">
+        <div class="section-kicker">
+          <span>03</span><span>THE DESIGN STUDIES</span
+          ><span class="section-kicker-note"
+            >IDEAS, CLEARLY MARKED AS CONCEPTS</span
+          >
+        </div>
+        <div class="concept-heading">
+          <h2>One language.<br /><span>Many expressions.</span></h2>
+          <p>
+            The Metro foundation is a starting point, not a fixed skin. These
+            studies explore how color, contrast, and tile scale can change while
+            the same Tessarchy structure holds together.
+          </p>
+        </div>
+        <div class="concept-grid">
+          <article class="concept-card concept-wide">
+            <a
+              href="media/metro-theme-directions.webp"
+              target="_blank"
+              rel="noreferrer"
+              ><img
+                src="media/metro-theme-directions.webp"
+                alt="Three Metro launcher concept directions: navy with blue and orange, charcoal with teal and violet, and a light high-contrast theme"
+                loading="lazy"
+            /></a>
+            <div class="concept-meta">
+              <span>DESIGN STUDY 01</span>
+              <h3>Three ways to tune the tile field</h3>
+              <p>
+                Classic cobalt, expressive night, and high-contrast light —
+                connected by one layout.
+              </p>
+            </div>
+          </article>
+          <article class="concept-card">
+            <a
+              href="media/earlier-live-tiles-concept.webp"
+              target="_blank"
+              rel="noreferrer"
+              ><img
+                src="media/earlier-live-tiles-concept.webp"
+                alt="Earlier Tessarchy launcher concept rendered on a smartphone"
+                loading="lazy"
+            /></a>
+            <div class="concept-meta">
+              <span>EARLY EXPLORATION</span>
+              <h3>From idea to interface</h3>
+              <p>
+                An earlier polished concept that helped establish the
+                home-screen composition.
+              </p>
+            </div>
+          </article>
+          <article class="concept-card">
+            <a
+              href="media/system-stack-concept.webp"
+              target="_blank"
+              rel="noreferrer"
+              ><img
+                src="media/system-stack-concept.webp"
+                alt="Exploded diagram concept showing Tessarchy experience layers above Android and device foundations"
+                loading="lazy"
+            /></a>
+            <div class="concept-meta">
+              <span>SYSTEM CONCEPT</span>
+              <h3>How far down can Tessa go?</h3>
+              <p>
+                An exploded view of the experience, platform, device
+                integration, and hardware layers.
+              </p>
+            </div>
+          </article>
+          <article class="concept-card">
+            <a
+              href="media/oneplus-7-port-concept.webp"
+              target="_blank"
+              rel="noreferrer"
+              ><img
+                src="media/oneplus-7-port-concept.webp"
+                alt="OnePlus 7 concept board for a future Android platform port"
+                loading="lazy"
+            /></a>
+            <div class="concept-meta">
+              <span>DEVICE STUDY</span>
+              <h3>A future home on OnePlus 7</h3>
+              <p>
+                Porting is a separate, later project. The device-specific
+                concept is planning material, not a tested build.
+              </p>
+            </div>
+          </article>
+        </div>
+        <p class="concept-disclaimer">
+          <span>✳</span> Concept artwork is an exploration of direction. Only
+          the emulator captures above represent the implemented app.
+        </p>
+      </section>
+
+      <section class="layers-section">
+        <div class="section layers-inner">
+          <div class="section-kicker">
+            <span>04</span><span>THE PLATFORM IDEA</span>
+          </div>
+          <div class="layers-heading">
+            <h2>Tessarchy above.<br /><span>Android underneath.</span></h2>
+            <p>
+              Start at the surface and earn every deeper layer. Android stays
+              responsible for the foundations while Tessarchy progressively
+              takes ownership of the experience.
+            </p>
+          </div>
+          <div class="stack-list">
+            <article class="stack-row stack-active">
+              <span class="stack-index">01</span>
+              <div class="stack-title">
+                <h3>Tessarchy launcher</h3>
+                <p>Home · tiles · app drawer · gesture language</p>
+              </div>
+              <span class="stack-state">IN DEVELOPMENT</span
+              ><span class="stack-sign">↗</span>
+            </article>
+            <article class="stack-row">
+              <span class="stack-index">02</span>
+              <div class="stack-title">
+                <h3>Tessarchy system surfaces</h3>
+                <p>Navigation · notifications · quick settings · lock screen</p>
+              </div>
+              <span class="stack-state">EXPLORATION</span
+              ><span class="stack-sign">＋</span>
+            </article>
+            <article class="stack-row">
+              <span class="stack-index">03</span>
+              <div class="stack-title">
+                <h3>Apps and services</h3>
+                <p>Tessa · media · communication · accessibility</p>
+              </div>
+              <span class="stack-state">FUTURE</span
+              ><span class="stack-sign">＋</span>
+            </article>
+            <article class="stack-row">
+              <span class="stack-index">04</span>
+              <div class="stack-title">
+                <h3>Android platform</h3>
+                <p>Framework · AOSP · permissions · application runtime</p>
+              </div>
+              <span class="stack-state">FOUNDATION</span
+              ><span class="stack-sign">＋</span>
+            </article>
+            <article class="stack-row">
+              <span class="stack-index">05</span>
+              <div class="stack-title">
+                <h3>Device and hardware</h3>
+                <p>Kernel · vendor integration · radio · camera · power</p>
+              </div>
+              <span class="stack-state">DEVICE WORK</span
+              ><span class="stack-sign">＋</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section roadmap-section" id="roadmap">
+        <div class="section-kicker">
+          <span>05</span><span>WHAT COMES NEXT</span>
+        </div>
+        <div class="roadmap-layout">
+          <div>
+            <h2>A working<br /><span>sequence.</span></h2>
+            <p>
+              The next releases move from polish to personalization, then
+              measure what deeper Android integration should look like.
+            </p>
+            <a class="arrow-link" href="audit-roadmap.html"
+              >Open the full 20-item audit roadmap <span>↗</span></a
+            >
+          </div>
+          <div class="milestone-list">
+            <article class="milestone done">
+              <span class="milestone-marker">✓</span>
+              <div>
+                <span>DONE / FOUNDATION</span>
+                <h3>Launcher prototype and first audit</h3>
+                <p>
+                  Android Home flow, app drawer, accessibility pass, and a
+                  validated debug build.
+                </p>
+              </div>
+            </article>
+            <article class="milestone current">
+              <span class="milestone-marker">02</span>
+              <div>
+                <span>NOW / EXPERIENCE</span>
+                <h3>Design tokens and tile model</h3>
+                <p>
+                  Give color, size, identity, and action one shared system.
+                  Begin editing and saved layouts.
+                </p>
+              </div>
+            </article>
+            <article class="milestone">
+              <span class="milestone-marker">03</span>
+              <div>
+                <span>NEXT / INTEGRATION</span>
+                <h3>Live content and test coverage</h3>
+                <p>
+                  Connect useful system data, improve keyboard behavior, and
+                  cover the interface with automated checks.
+                </p>
+              </div>
+            </article>
+            <article class="milestone">
+              <span class="milestone-marker">04</span>
+              <div>
+                <span>LATER / PLATFORM</span>
+                <h3>System and device feasibility</h3>
+                <p>
+                  Validate deeper OS work on a virtual platform before making a
+                  recovery-safe OnePlus 7 plan.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta-section">
+        <div class="cta-grid">
+          <div class="cta-mark" aria-hidden="true">
+            <i></i><i></i><i></i><i></i>
+          </div>
+          <div>
+            <p class="eyebrow">A SMALL PROJECT WITH A BIG SURFACE</p>
+            <h2>Make room for<br /><span>your kind of phone.</span></h2>
+            <p class="cta-copy">
+              Tessarchy Android Edition is early and public. See what runs,
+              browse what is imagined, and help shape the next questions through
+              focused issues and design discussion.
+            </p>
+            <div class="hero-actions">
+              <a
+                class="button button-dark"
+                href="https://github.com/thediamondsaint/tessarchy-android-edition"
+                >Explore the repository <span aria-hidden="true">↗</span></a
+              ><a class="text-link text-link-dark" href="project-guide.html"
+                >Read the project guide <span aria-hidden="true">↗</span></a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a class="brand footer-brand" href="#top"
+        ><span class="brand-mark" aria-hidden="true"
+          ><i></i><i></i><i></i><i></i></span
+        ><span>TESSARCHY <b>ANDROID EDITION</b></span></a
+      ><span>A PUBLIC ANDROID EXPERIMENT · BUILD 0.1</span>
+      <div>
+        <a href="project-guide.html">PROJECT GUIDE</a
+        ><a href="architecture.html">ARCHITECTURE</a
+        ><a href="audit-roadmap.html">ROADMAP</a
+        ><a href="https://github.com/thediamondsaint/tessarchy-android-edition"
+          >GITHUB ↗</a
+        >
+      </div>
+    </footer>
+
+    <script src="site.js"></script>
+  </body>
+</html>

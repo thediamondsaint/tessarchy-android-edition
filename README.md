@@ -1,74 +1,86 @@
 # Tessarchy Android Edition
 
-TAE is the Android-based edition of Tessarchy. The first milestone is a Tessa-inspired
-home launcher with a Windows Phone-style live-tile layout. Android remains responsible
-for device hardware, telephony, app processes and system services.
+**A Metro-inspired Android launcher experiment for a more personal phone.**
 
-## Current prototype
+Tessarchy Android Edition (TAE) explores how Tessarchy could become the primary
+experience on an Android device. The visual direction combines Metro's strong
+grid, generous typography, quick-glance information, and saturated color with
+Tessarchy's navy and mint identity. Android continues to provide the device,
+application, and system foundations.
 
-- Android app that can be selected as the device's Home app
-- Tessarchy navy and mint framing with flat, Metro-inspired colored tiles
-- Live clock and date
-- Phone, messages, calendar, photos and music intent tiles
-- Searchable app drawer built from installed launcher activities
-- Android 12 minimum SDK, Android 17 compile and target SDK
+> **Project stage:** early prototype. The current deliverable is an Android
+> launcher app, not a custom Android operating system or a OnePlus 7 ROM.
 
-## Emulator demo
+## Project page
 
-The recording shows the Metro-style home tiles, tapping Tessa, scrolling down, and
-opening the Apps drawer:
+Visit the [Tessarchy Android Edition project page](https://thediamondsaint.github.io/tessarchy-android-edition/)
+for the full visual direction, emulator screenshots, concept gallery, platform
+layers, and development sequence.
 
-![Tessarchy Android Edition scrolling and tile interaction](artifacts/tae-scroll-tap.gif)
+## What runs today
 
-Full-size stills and the source emulator recording are also in `artifacts/`.
+- A Jetpack Compose app that can be selected as Android's Home app.
+- A live clock and date above a Metro-style grid of colored rectangular tiles.
+- Phone, messages, calendar, photos, music, and Tessa launcher actions.
+- A searchable drawer of installed launcher apps with their actual app icons.
+- Loading, no-app, and no-search-match states in the drawer.
+- Localized string resources and accessible button semantics.
 
-The current concept art is in `assets/concepts/`.
+The **real emulator screenshots and interaction recording** are in [`artifacts/`](artifacts/).
+The **design concepts** are in [`assets/concepts/`](assets/concepts/) and are
+clearly labeled as explorations; they do not represent implemented features.
 
-See [the code audit and 20-item improvement roadmap](docs/audit-roadmap.md) for
-the current findings and development queue.
+## What we are making
+
+The first layer is a useful Tessarchy home and app-navigation experience. From
+there, the project can explore editable tile layouts, saved preferences, live
+content, and additional system surfaces. Deeper Android and AOSP changes remain
+later investigations because each layer adds device and maintenance work.
+
+The project direction, implementation boundary, platform strategy, setup, and
+contribution notes are in the [project guide](docs/project-guide.md). The
+[architecture notes](docs/architecture.md) describe the application and system
+layers. The [20-item code audit and improvement roadmap](docs/audit-roadmap.md)
+records what has been fixed and what comes next.
+
+## Metro direction
+
+- Use flat, high-contrast color blocks to make actions easy to find.
+- Keep a consistent modular grid and restrained rounded corners.
+- Make type and live information part of the layout, not decoration.
+- Let users shape the order, size, and emphasis of their tiles.
+- Keep Tessarchy's navy and mint frame calm around the brighter tile field.
 
 ## Build and run
 
-Requirements: Android SDK Platform 37, Android Build Tools 36, Android Emulator,
-and JDK 17. `mise.toml` pins the project-local Java version. Open this directory
-in Android Studio and allow Gradle sync, or use the terminal commands below.
-Create an Android 17 (API 37) phone AVD, then run the `app` configuration. To
-check the minimum supported platform, also create an Android 12 (API 31) AVD.
-
-From a terminal with Java, Android SDK and the Gradle wrapper available:
+Requirements: JDK 17, Android SDK Platform 37, Android Build Tools 36, and the
+Android Emulator. `mise.toml` selects the project-local Java runtime. Create a
+local `local.properties` file that points to your Android SDK; Git ignores it.
 
 ```sh
 mise exec -- ./gradlew :app:assembleDebug
+```
+
+To run checks and install on a running emulator:
+
+```sh
+mise exec -- ./gradlew :app:lintDebug
 mise exec -- ./gradlew :app:installDebug
 ```
 
-The local API 37 AVD is named `TAE_API_37`. To start it headless on a smaller
-host, use software rendering and two virtual CPUs:
+The development AVD is named `TAE_API_37`. After installation, select
+**Tessarchy** under Android Settings → Default apps → Home app. See the
+[project guide](docs/project-guide.md) for emulator setup and device notes.
 
-```sh
-~/Android/Sdk/emulator/emulator -avd TAE_API_37 -no-window -no-audio \
-  -no-boot-anim -cores 2 -gpu swiftshader_indirect
-```
+## Development order
 
-Its first boot takes several minutes while Android prepares the system image.
-The checked-in project ignores the local SDK path and emulator data. Screenshots
-from the first run are in `artifacts/`.
+The next work is to centralize design tokens, represent tiles as data, and add
+editable layouts and preference persistence. Live content, keyboard behavior,
+accessibility across screen sizes, automated coverage, and CI follow as the
+interaction model settles. The full sequence is maintained in the roadmap.
 
-After installing, choose **Tessarchy** under Android's Default apps → Home app.
-The emulator must be running for the install command. The ignored `local.properties`
-file points Gradle at the local SDK under `~/Android/Sdk`.
+## License
 
-## Project layout
-
-- `app/src/main/` — Android launcher source, manifest and resources
-- `app/src/test/` — local unit-test source set
-- `assets/` — concept art and visual assets
-- `docs/` — design and implementation notes
-
-## Next development steps
-
-1. Tune tile proportions and the app drawer for phone and tablet screens.
-2. Replace placeholder glyphs with a consistent Tessarchy icon set.
-3. Add editable tile arrangement and live data sources.
-4. Bring up a full Tessarchy Android system image on Cuttlefish, then adapt it for
-   the OnePlus 7 (`guacamoleb`).
+This repository is public, but no software license has been selected yet.
+Public visibility allows inspection and discussion; it does not grant reuse
+rights under an open-source license.
