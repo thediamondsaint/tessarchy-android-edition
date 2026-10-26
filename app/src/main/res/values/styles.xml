@@ -1,0 +1,12 @@
+<resources>
+    <style name="Theme.Tessarchy" parent="android:style/Theme.Material.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:colorAccent">#8CE1C9</item>
+        <item name="android:statusBarColor">#101C2B</item>
+        <item name="android:navigationBarColor">#0B1724</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="android:windowBackground">#101C2B</item>
+    </style>
+</resources>

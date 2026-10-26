@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1280" viewBox="0 0 1920 1280" role="img" aria-labelledby="title desc">
+  <title id="title">Tessarchy Android Edition on OnePlus 7 — exploded port and installation plan</title>
+  <desc id="desc">A planning diagram showing Tessarchy Android customization on a LineageOS and AOSP base, combined with OnePlus 7 device configuration, kernel, vendor firmware, recovery, and phone hardware. It shows build, unlock, flash, install, and test stages. It is not a flashable build.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#101c2b"/><stop offset=".55" stop-color="#142b3c"/><stop offset="1" stop-color="#0b1724"/></linearGradient>
+    <linearGradient id="mint" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d8fff0"/><stop offset=".48" stop-color="#88e6cc"/><stop offset="1" stop-color="#53bca8"/></linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#1b3346" stop-opacity=".98"/><stop offset="1" stop-color="#142638" stop-opacity=".98"/></linearGradient>
+    <filter id="shadow" x="-25%" y="-25%" width="150%" height="160%"><feGaussianBlur in="SourceAlpha" stdDeviation="12"/><feOffset dy="10"/><feColorMatrix type="matrix" values="0 0 0 0 0.01 0 0 0 0 0.04 0 0 0 0 0.08 0 0 0 .5 0"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <pattern id="grid" width="56" height="56" patternUnits="userSpaceOnUse"><path d="M56 0H0V56" fill="none" stroke="#b7e9e9" stroke-opacity=".045" stroke-width="1"/></pattern>
+    <style>
+      .sans{font-family:Inter,"Segoe UI",Arial,sans-serif}.mono{font-family:"SFMono-Regular",Consolas,monospace}
+      .title{font-size:42px;font-weight:760;letter-spacing:1.8px;fill:#f2fbff}.sub{font-size:18px;fill:#a6bfca;letter-spacing:.3px}
+      .eyebrow{font-size:12px;font-weight:750;letter-spacing:2px;fill:#7ecfba}.layer{font-size:16px;font-weight:750;letter-spacing:.8px;fill:#f1fbff}.layerSub{font-size:11px;letter-spacing:.9px;fill:#91b1bf}
+      .descHead{font-size:15px;font-weight:720;fill:#e9f8fa}.desc{font-size:13px;fill:#9db7c2}.tag{font-size:10px;font-weight:750;letter-spacing:1px;fill:#173343}
+      .stepNum{font-size:13px;font-weight:800;fill:#112b38}.stepTitle{font-size:14px;font-weight:720;fill:#effbff}.stepBody{font-size:12px;fill:#a9c0cb}.fine{font-size:11px;fill:#8ba6b3}
+    </style>
+  </defs>
+  <rect width="1920" height="1280" fill="url(#bg)"/><rect width="1920" height="1280" fill="url(#grid)"/>
+  <circle cx="1650" cy="180" r="330" fill="#46bba7" opacity=".045"/><circle cx="1650" cy="180" r="235" fill="none" stroke="#89e5d0" stroke-opacity=".08"/>
+  <!-- Tessarchy tessellated T -->
+  <g transform="translate(82 64) scale(.52)"><path fill="url(#mint)" d="M64 9 90 24 64 39 38 24Z"/><path fill="#a6edd7" d="m10 40 26-15 26 15-26 15Z"/><path fill="#65baa9" d="m66 40 26-15 26 15-26 15Z"/><path fill="url(#mint)" d="m39 59 25-15 25 15-25 15Z"/><path fill="#8ce1c9" d="m39 64 23 14v35L39 99Z"/><path fill="#4b9f94" d="m66 78 23-14v35l-23 14Z"/></g>
+  <text x="150" y="91" class="sans title">TESSARCHY ANDROID · ONEPLUS 7</text>
+  <text x="152" y="127" class="sans sub">Device-specific port plan — assemble Tessa above a working Android foundation.</text>
+  <rect x="1510" y="65" width="326" height="38" rx="19" fill="#422f35" stroke="#d69381" stroke-opacity=".65"/><circle cx="1534" cy="84" r="5" fill="#f2aa91"/><text x="1550" y="88" class="sans" font-size="11" font-weight="750" letter-spacing="1.1" fill="#ffd9cb">PORT PLAN · NOT A FLASHABLE BUILD</text>
+  <path d="M80 158H1840" stroke="#8db9c3" stroke-opacity=".22"/>
+  <text x="82" y="194" class="sans eyebrow">EXPLODED BUILD STACK</text>
+  <text x="1132" y="194" class="sans eyebrow">BRING-UP SEQUENCE</text>
+
+  <!-- Layer 1 Tessarchy -->
+  <g filter="url(#shadow)">
+    <path d="M84 270 147 236H971L908 270Z" fill="#c7fff0" fill-opacity=".22" stroke="#b8ffeb" stroke-opacity=".7"/>
+    <path d="M908 270 971 236V309L908 343Z" fill="#438f86" stroke="#81dfc6" stroke-opacity=".55"/>
+    <path d="M84 270H908V343H84Z" fill="url(#panel)" stroke="#8fe9d1" stroke-width="1.4"/><path d="M84 270H908V343H84Z" fill="#88e6cc" opacity=".07"/>
+    <text x="112" y="301" class="sans layer">TESSARCHY ANDROID EXPERIENCE</text><text x="112" y="323" class="sans layerSub">TESSA HOME · SYSTEM UI · SETTINGS · THEMES · DEFAULT APPS</text>
+    <g transform="translate(760 283)"><rect width="116" height="43" rx="10" fill="#0d1d2a" stroke="#72d5bd" stroke-opacity=".8"/><rect x="8" y="7" width="100" height="6" rx="3" fill="#b3f1de" opacity=".75"/><rect x="8" y="18" width="43" height="17" rx="5" fill="#356b6a"/><rect x="56" y="18" width="22" height="17" rx="5" fill="#294f61"/><rect x="83" y="18" width="25" height="17" rx="5" fill="#294f61"/></g>
+    <rect x="842" y="248" width="112" height="20" rx="10" fill="#a8f2dc"/><text x="898" y="262" class="sans tag" text-anchor="middle">CUSTOM LAYER</text>
+  </g>
+  <text x="82" y="376" class="sans fine">Tessa becomes the phone interface; Linux desktop shell components are reimplemented for Android.</text>
+
+  <!-- Layer 2 Android base -->
+  <g filter="url(#shadow)">
+    <path d="M84 438 147 404H971L908 438Z" fill="#9fead9" fill-opacity=".16" stroke="#8de0ce" stroke-opacity=".62"/>
+    <path d="M908 438 971 404V477L908 511Z" fill="#356d73" stroke="#67cbbd" stroke-opacity=".5"/>
+    <path d="M84 438H908V511H84Z" fill="url(#panel)" stroke="#68cfbf" stroke-width="1.3"/>
+    <text x="112" y="469" class="sans layer">LINEAGEOS / AOSP BASE</text><text x="112" y="491" class="sans layerSub">ANDROID PLATFORM · APP RUNTIME · PERMISSIONS · SYSTEM SERVICES</text>
+    <g transform="translate(789 454)" fill="none" stroke="#a8e9df" stroke-width="1.6"><rect width="25" height="25" rx="7"/><path d="M7 12.5h11M12.5 7v11"/><rect x="34" width="25" height="25" rx="7"/><path d="M41 8h11M41 13h11M41 18h7"/></g>
+    <rect x="833" y="416" width="124" height="20" rx="10" fill="#89e6d4"/><text x="895" y="430" class="sans tag" text-anchor="middle">CURRENT BASE: LOS 24</text>
+  </g>
+  <text x="82" y="544" class="sans fine">Build Tessarchy changes into the ROM package, then produce a signed install bundle and recovery image.</text>
+
+  <!-- Layer 3 device tree -->
+  <g filter="url(#shadow)">
+    <path d="M84 606 147 572H971L908 606Z" fill="#86d7d3" fill-opacity=".15" stroke="#75caca" stroke-opacity=".57"/>
+    <path d="M908 606 971 572V645L908 679Z" fill="#315c71" stroke="#5aaeba" stroke-opacity=".52"/>
+    <path d="M84 606H908V679H84Z" fill="url(#panel)" stroke="#5daec0" stroke-width="1.3"/>
+    <text x="112" y="637" class="sans layer">ONEPLUS 7 DEVICE PORT</text><text x="112" y="659" class="sans layerSub">DEVICE TREE · KERNEL · VENDOR BLOBS · HARDWARE CONFIG</text>
+    <g transform="translate(796 619)" fill="none" stroke="#90d8df" stroke-width="1.6"><rect x="0" y="0" width="32" height="29" rx="6"/><path d="M8 0v-4M16 0v-4M24 0v-4M8 33v-4M16 33v-4M24 33v-4M0 8h-4M0 16h-4M0 24h-4M36 8h-4M36 16h-4M36 24h-4"/><circle cx="16" cy="14" r="6"/></g>
+    <rect x="838" y="584" width="118" height="20" rx="10" fill="#81dce0"/><text x="897" y="598" class="sans tag" text-anchor="middle">GUACAMOLEB</text>
+  </g>
+  <text x="82" y="712" class="sans fine">OnePlus 7 codename guacamoleb · models GM1900 / GM1901 / GM1903 / GM1905</text>
+
+  <!-- Layer 4 firmware + recovery -->
+  <g filter="url(#shadow)">
+    <path d="M84 774 147 740H971L908 774Z" fill="#74bfd0" fill-opacity=".15" stroke="#68b6ce" stroke-opacity=".58"/>
+    <path d="M908 774 971 740V813L908 847Z" fill="#31526d" stroke="#5598bb" stroke-opacity=".5"/>
+    <path d="M84 774H908V847H84Z" fill="url(#panel)" stroke="#519cbe" stroke-width="1.3"/>
+    <text x="112" y="805" class="sans layer">FIRMWARE · RECOVERY · PARTITIONS</text><text x="112" y="827" class="sans layerSub">ANDROID 12 STOCK FIRMWARE REQUIRED BY CURRENT DEVICE GUIDE</text>
+    <g transform="translate(796 790)" fill="none" stroke="#91cbe0" stroke-width="1.6"><path d="M0 9 20 0l20 9-20 9z"/><path d="M6 18 26 9l20 9-20 9z"/><path d="M12 27 32 18l20 9-20 9z"/></g>
+    <rect x="837" y="752" width="119" height="20" rx="10" fill="#75c3dc"/><text x="896" y="766" class="sans tag" text-anchor="middle">VERIFY FIRST</text>
+  </g>
+  <text x="82" y="880" class="sans fine">The firmware baseline matters; the device-specific recovery path also prepares dtbo and vbmeta.</text>
+
+  <!-- Layer 5 phone hardware -->
+  <g filter="url(#shadow)">
+    <path d="M84 942 147 908H971L908 942Z" fill="#6786a5" fill-opacity=".15" stroke="#6988a8" stroke-opacity=".55"/>
+    <path d="M908 942 971 908V981L908 1015Z" fill="#273955" stroke="#486582" stroke-opacity=".55"/>
+    <path d="M84 942H908V1015H84Z" fill="url(#panel)" stroke="#496c8e" stroke-width="1.3"/>
+    <text x="112" y="973" class="sans layer">ONEPLUS 7 HARDWARE</text><text x="112" y="995" class="sans layerSub">SNAPDRAGON 855 · AMOLED · TOUCH · MODEM · CAMERAS · BATTERY</text>
+    <g transform="translate(818 950)"><rect x="0" y="0" width="26" height="49" rx="8" fill="#0b1724" stroke="#8aa8bf" stroke-width="1.4"/><rect x="4" y="7" width="18" height="34" rx="3" fill="#173443"/><circle cx="13" cy="45" r="1.5" fill="#9bb6c4"/></g>
+    <rect x="837" y="920" width="120" height="20" rx="10" fill="#526f8c"/><text x="897" y="934" class="sans tag" text-anchor="middle" fill="#d9e7ef">TARGET PHONE</text>
+  </g>
+
+  <!-- Right bring-up sequence -->
+  <path d="M1126 232V1008" stroke="#83d9c8" stroke-opacity=".28" stroke-width="2"/>
+  <g>
+    <circle cx="1126" cy="258" r="17" fill="url(#mint)"/><text x="1126" y="263" text-anchor="middle" class="sans stepNum">1</text>
+    <text x="1160" y="253" class="sans stepTitle">Confirm the exact phone</text><text x="1160" y="275" class="sans stepBody">Settings → About phone: GM1900, GM1901, GM1903 or GM1905.</text>
+
+    <circle cx="1126" cy="374" r="17" fill="url(#mint)"/><text x="1126" y="379" text-anchor="middle" class="sans stepNum">2</text>
+    <text x="1160" y="369" class="sans stepTitle">Prepare the build workstation</text><text x="1160" y="391" class="sans stepBody">Sync the device ROM source, guacamoleb tree, kernel and vendor blobs.</text><text x="1160" y="409" class="sans stepBody">Add Tessarchy launcher, apps, system UI and settings customization.</text>
+
+    <circle cx="1126" cy="508" r="17" fill="url(#mint)"/><text x="1126" y="513" text-anchor="middle" class="sans stepNum">3</text>
+    <text x="1160" y="503" class="sans stepTitle">Check stock firmware and back up</text><text x="1160" y="525" class="sans stepBody">The current OnePlus 7 Lineage guide requires Android 12 stock firmware.</text><text x="1160" y="543" class="sans stepBody">Back up first: unlocking the bootloader erases the phone.</text>
+
+    <circle cx="1126" cy="642" r="17" fill="url(#mint)"/><text x="1126" y="647" text-anchor="middle" class="sans stepNum">4</text>
+    <text x="1160" y="637" class="sans stepTitle">Unlock, then install the recovery path</text><text x="1160" y="659" class="sans stepBody">Enable OEM unlocking; use the device’s documented fastboot steps.</text><text x="1160" y="677" class="sans stepBody">Flash the matching dtbo, vbmeta and recovery images.</text>
+
+    <circle cx="1126" cy="776" r="17" fill="url(#mint)"/><text x="1126" y="781" text-anchor="middle" class="sans stepNum">5</text>
+    <text x="1160" y="771" class="sans stepTitle">Install the Tessarchy Android bundle</text><text x="1160" y="793" class="sans stepBody">Factory reset in recovery, then ADB-sideload the built ROM package.</text><text x="1160" y="811" class="sans stepBody">Install any chosen add-ons before the first system boot.</text>
+
+    <circle cx="1126" cy="910" r="17" fill="url(#mint)"/><text x="1126" y="915" text-anchor="middle" class="sans stepNum">6</text>
+    <text x="1160" y="905" class="sans stepTitle">First boot, then validate the phone</text><text x="1160" y="927" class="sans stepBody">Test touch, calls, SMS, mobile data, Wi-Fi, camera, audio, sleep and charging.</text><text x="1160" y="945" class="sans stepBody">Keep a recovery route and build signed update packages.</text>
+  </g>
+  <rect x="1128" y="1000" width="667" height="58" rx="13" fill="#172d3c" stroke="#6dbfae" stroke-opacity=".45"/>
+  <text x="1150" y="1024" class="sans eyebrow" font-size="10">BASELINE FACTS FROM THE DEVICE GUIDE</text>
+  <text x="1150" y="1044" class="sans fine">OnePlus 7 = guacamoleb · Android 12 stock firmware · unlock wipes data</text>
+
+  <path d="M82 1102H1838" stroke="#8db9c3" stroke-opacity=".22"/>
+  <text x="82" y="1140" class="sans eyebrow">BUILD ON A COMPUTER</text><text x="285" y="1140" class="sans sub" font-size="15">ROM source + OP7 device support + Tessarchy customizations</text>
+  <text x="82" y="1183" class="sans fine">An installation diagram, not a tested Tessarchy ROM. Follow the exact current device guide and stop if any step fails.</text>
+  <text x="1838" y="1183" text-anchor="end" class="sans mono" font-size="11" fill="#7f9aa7">TESSARCHY ANDROID · OP7 PORT MAP</text>
+</svg>

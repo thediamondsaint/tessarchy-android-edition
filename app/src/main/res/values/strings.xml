@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Tessarchy</string>
+    <string name="tessarchy_name_uppercase">TESSARCHY</string>
+    <string name="tessarchy_mark_description">Tessarchy mark</string>
+    <string name="home_mobile">MOBILE</string>
+    <string name="tile_tessarchy_description">Tessarchy identity tile</string>
+    <string name="tile_calendar_description">Today calendar tile</string>
+    <string name="calendar_today">Today</string>
+    <string name="calendar_title">Calendar</string>
+    <string name="phone_title">Phone</string>
+    <string name="messages_title">Messages</string>
+    <string name="tile_tessa_description">Tessa assistant preview</string>
+    <string name="tessa_name">TESSA</string>
+    <string name="tessa_tagline">YOUR DESKTOP, REIMAGINED</string>
+    <string name="photos_title">Photos</string>
+    <string name="music_title">Music</string>
+    <string name="apps_title">Apps</string>
+    <string name="open_all_apps_description">Open all apps</string>
+    <string name="apps_drawer_title">All apps</string>
+    <string name="apps_back">Back to home</string>
+    <string name="apps_search_hint">Search apps</string>
+    <string name="apps_loading">Loading apps…</string>
+    <string name="apps_empty">No apps available</string>
+    <string name="apps_no_matches">No apps match “%1$s”</string>
+    <string name="toast_tessa">Tessa is taking shape</string>
+    <string name="toast_open_failed">Couldn’t open that app</string>
+    <string name="toast_no_app">No matching app is installed</string>
+</resources>
