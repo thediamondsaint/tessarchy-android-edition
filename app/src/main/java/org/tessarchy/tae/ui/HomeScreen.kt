@@ -418,7 +418,7 @@ private fun HomeTile(
                 }
             }
             TileId.Phone -> {
-                TileText("QUICK DIAL", Color.White.copy(alpha = 0.82f), 8.sp, FontWeight.Bold,
+                TileText(stringResource(R.string.phone_title).uppercase(), Color.White.copy(alpha = 0.82f), 8.sp, FontWeight.Bold,
                     Modifier.align(Alignment.TopStart).padding(start = 13.dp, top = 13.dp), letterSpacing = 1.2.sp)
                 Image(painterResource(R.drawable.ic_phone), null,
                     colorFilter = ColorFilter.tint(Color.White), modifier = Modifier.align(Alignment.Center).size(28.dp))
@@ -430,7 +430,7 @@ private fun HomeTile(
                     Modifier.align(Alignment.TopStart).padding(start = 13.dp, top = 13.dp), letterSpacing = 1.2.sp)
                 Image(painterResource(R.drawable.ic_message), null,
                     colorFilter = ColorFilter.tint(Color.White), modifier = Modifier.align(Alignment.Center).size(28.dp))
-                TileText("Open inbox", Color.White, 12.sp, FontWeight.SemiBold,
+                TileText(stringResource(R.string.message_new), Color.White, 12.sp, FontWeight.SemiBold,
                     Modifier.align(Alignment.BottomStart).padding(start = 13.dp, bottom = 12.dp))
             }
             TileId.Tessa -> {
@@ -447,11 +447,11 @@ private fun HomeTile(
                 }
             }
             TileId.Photos -> {
-                TileText("YOUR MOMENTS", Color.White.copy(alpha = 0.82f), 8.sp, FontWeight.Bold,
+                TileText(stringResource(R.string.photos_title).uppercase(), Color.White.copy(alpha = 0.82f), 8.sp, FontWeight.Bold,
                     Modifier.align(Alignment.TopStart).padding(start = 13.dp, top = 13.dp), letterSpacing = 1.2.sp)
                 Image(painterResource(R.drawable.ic_photos), null,
                     colorFilter = ColorFilter.tint(Color.White), modifier = Modifier.align(Alignment.Center).size(27.dp))
-                TileText("Photos", Color.White, 12.sp, FontWeight.SemiBold,
+                TileText(stringResource(R.string.photos_choose), Color.White, 12.sp, FontWeight.SemiBold,
                     Modifier.align(Alignment.BottomStart).padding(start = 13.dp, bottom = 12.dp))
             }
             TileId.Music -> {

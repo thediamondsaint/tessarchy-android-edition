@@ -15,8 +15,9 @@ or a OnePlus 7 ROM.
 ## Runtime flow
 
 1. Android launches `MainActivity` as the selected Home activity.
-2. On activity resume, package APIs enumerate launcher activities off the main
-   thread. Entries use component identity and bounded icon bitmaps.
+2. After the user accepts the installed-app disclosure, package APIs enumerate
+   launcher activities off the main thread. Entries use component identity and
+   bounded icon bitmaps; the consent choice can be revoked in Studio.
 3. Compose renders the clock, calendar date, configurable Metro tiles, and app
    drawer.
 4. Preferences DataStore stores tile order, hidden tiles, tile widths, and the
@@ -26,7 +27,8 @@ or a OnePlus 7 ROM.
 6. Android services and the device vendor stack continue to run underneath.
 
 The installed-app query runs away from the main thread. The app drawer refreshes
-when the launcher resumes. UI strings use Android resources, locale-aware date
+when the launcher resumes after opt-in. App names and icons stay in memory; TAE
+does not request internet access or transmit that inventory. UI strings use Android resources, locale-aware date
 formatting observes configuration changes, and tile reorder controls provide
 both drag handles and TalkBack move actions.
 
@@ -38,6 +40,10 @@ both drag handles and TalkBack move actions.
 - Two-column phone layout and four-column layout when the available width is at
   least 640 dp.
 - Searchable app drawer with component-specific app entries and actual icons.
+- First-run disclosure and opt-in for installed-app inventory; revocation clears
+  the in-memory list. The public privacy policy is linked in Studio.
+- An Android Home role request in Studio to guide the user through setting the
+  launcher as default.
 - The Tessa surface clearly marks assistant functionality as a future feature.
 
 The first release does not host third-party widgets, read calendar events, or
@@ -67,7 +73,7 @@ need and can be validated on a virtual device first.
 ## Platform baseline
 
 - `minSdk`: 31 (Android 12)
-- `compileSdk` and `targetSdk`: 36 (Android 16 stable)
+- `compileSdk` and `targetSdk`: 37 (Android 17)
 - Kotlin Compose compiler plugin: 2.4.21
 - Android Gradle Plugin: 9.4.1
 - Gradle: 9.8.2
@@ -76,9 +82,9 @@ need and can be validated on a virtual device first.
 ## Device strategy
 
 The standard OnePlus 7 (`guacamoleb`) is a later hardware target. Current
-prototype screenshots come from the Android 17 API 37 preview emulator. It is
-used for visual comparison only; release builds target the stable Android 16
-API 36. Neither represents a tested OnePlus build. The stock-firmware Android 12 requirement is
+prototype screenshots come from the Android 17 API 37 emulator. They are used
+for release-candidate validation only. They do not represent a tested OnePlus
+build. The stock-firmware Android 12 requirement is
 part of preparation for future ROM research; it does not set this launcher's
 minimum SDK or the Android version of a hypothetical later system image.
 

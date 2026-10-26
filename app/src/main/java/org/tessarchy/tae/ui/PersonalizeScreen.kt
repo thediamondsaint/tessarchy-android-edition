@@ -1,5 +1,8 @@
 package org.tessarchy.tae.ui
 
+import android.app.role.RoleManager
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -29,6 +32,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ColorFilter
@@ -52,8 +56,15 @@ fun PersonalizeScreen(
     palette: MetroPalette,
     onBack: () -> Unit,
     onUpdate: ((LauncherPreferences) -> LauncherPreferences) -> Unit,
+    onPrivacy: () -> Unit,
     onArrange: () -> Unit,
 ) {
+    val context = LocalContext.current
+    val roleManager = remember(context) { context.getSystemService(RoleManager::class.java) }
+    var isHomeApp by remember { mutableStateOf(roleManager?.isRoleHeld(RoleManager.ROLE_HOME) == true) }
+    val homeRoleRequest = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        isHomeApp = roleManager?.isRoleHeld(RoleManager.ROLE_HOME) == true
+    }
     var showResetDialog by remember { mutableStateOf(false) }
     val scrollState = rememberScrollState()
     val backDescription = stringResource(R.string.back_to_home)
@@ -91,6 +102,31 @@ fun PersonalizeScreen(
             fontSize = 13.sp,
             modifier = Modifier.padding(start = 4.dp, top = 4.dp, bottom = 22.dp),
         )
+
+        Column(
+            modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(16.dp)).background(palette.surface).padding(16.dp),
+        ) {
+            Text(
+                text = stringResource(if (isHomeApp) R.string.home_app_active_title else R.string.home_app_setup_title),
+                color = palette.text,
+                fontSize = 15.sp,
+                fontWeight = FontWeight.SemiBold,
+            )
+            Text(
+                text = stringResource(if (isHomeApp) R.string.home_app_active_body else R.string.home_app_setup_body),
+                color = palette.muted,
+                fontSize = 11.sp,
+                lineHeight = 16.sp,
+                modifier = Modifier.padding(top = 5.dp, bottom = if (isHomeApp) 0.dp else 12.dp),
+            )
+            if (!isHomeApp && roleManager?.isRoleAvailable(RoleManager.ROLE_HOME) == true) {
+                Button(onClick = {
+                    homeRoleRequest.launch(roleManager.createRequestRoleIntent(RoleManager.ROLE_HOME))
+                }) {
+                    Text(stringResource(R.string.set_home_app))
+                }
+            }
+        }
 
         SectionTitle(stringResource(R.string.appearance_title), palette)
         Column(verticalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.padding(top = 10.dp)) {
@@ -137,6 +173,9 @@ fun PersonalizeScreen(
 
         TextButton(onClick = { showResetDialog = true }, modifier = Modifier.align(Alignment.CenterHorizontally)) {
             Text(stringResource(R.string.settings_reset_layout), color = palette.muted)
+        }
+        TextButton(onClick = onPrivacy, modifier = Modifier.align(Alignment.CenterHorizontally)) {
+            Text(stringResource(R.string.privacy_and_data), color = palette.mint)
         }
         Text(
             text = stringResource(R.string.launcher_version),

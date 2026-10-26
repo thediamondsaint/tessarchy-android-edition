@@ -24,6 +24,7 @@ layers, and development sequence.
 - A bottom Window Tape prototype that switches among Home, Apps, Tessa, and Studio. Arbitrary Android app windows do not yet scroll side by side.
 - Phone, messages, calendar, photos, music, and Tessa launcher actions.
 - A searchable drawer of installed launcher apps with their actual app icons.
+- An optional, explained app-library permission choice. App names and icons are read only after consent, stay on device, and can be disabled in Studio → Privacy & data.
 - Loading, no-app, and no-search-match states in the drawer.
 - Metro tiles that can be hidden, resized, reordered, and recolored with three
   saved themes.
@@ -33,6 +34,7 @@ layers, and development sequence.
 - App discovery refreshed when returning to the launcher, with per-activity
   identity for apps that expose multiple launcher entries.
 - Localized string resources, accessible control names, and adaptive app icons.
+- A Home-app setup action that opens Android's system role chooser.
 
 The **current emulator screenshots and interaction recording** are in [`docs/media/`](docs/media/). The **design concepts** are also kept in that folder and labeled as explorations; they do not represent implemented features.
 
@@ -61,7 +63,7 @@ and what comes next.
 
 ## Build and run
 
-Requirements: JDK 17, Android SDK Platform 36, Android Build Tools 36, and the
+Requirements: JDK 17, Android SDK Platform 37, Android Build Tools 37, and the
 Android Emulator. `mise.toml` selects the project-local Java runtime. Create a
 local `local.properties` file that points to your Android SDK; Git ignores it.
 
@@ -76,18 +78,33 @@ mise exec -- ./gradlew :app:lintDebug
 mise exec -- ./gradlew :app:installDebug
 ```
 
-The local Android 17 preview AVD is named `TAE_API_37`; it is used for visual
-comparison. CI tests on stable API 36. After installation, select **Tessarchy**
+To create a signed Play App Bundle, keep `keystore.properties` and the upload
+keystore outside Git, then run:
+
+```sh
+mise exec -- ./gradlew :app:bundleRelease
+```
+
+The current release bundle is written to
+`app/build/outputs/bundle/release/app-release.aab`. Play App Signing should be
+enabled for the app in Play Console. The local upload key is for uploads only;
+protect it and keep a secure backup. Store listing copy, artwork, screenshots,
+privacy details, and the remaining Console checklist are in [`play-store/`](play-store/).
+
+The local Android 17 AVD is named `TAE_API_37`; it is used for visual
+comparison and release-candidate testing. CI is configured to test API 37. After installation, select **Tessarchy**
 under Android Settings → Default apps → Home app. See the
 [project guide](docs/project-guide.md) for emulator setup and device notes.
 
 ## Development order
 
-The release candidate now passes local unit, lint, build, and Compose smoke checks,
-plus GitHub Actions on stable Android API 36. Next, review wide-screen behavior,
-accessibility, and keyboard navigation on more devices. Play Store submission needs
-separate signing, listing, policy, and device-compatibility work; it is not part of
-this candidate.
+The current candidate targets Android 17/API 37 and includes opt-in disclosure for
+launcher app visibility, an in-app privacy page, a public privacy policy, release
+shrinking, and a Play listing draft. Local Android 17 emulator review and the
+instrumented launcher smoke test cover the current consent, app drawer, and search
+flow. Store submission still requires the Play Console account declarations and
+review, physical-device feedback, and any testing-track gates tied to the developer
+account.
 
 ## License
 

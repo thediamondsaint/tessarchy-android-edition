@@ -7,7 +7,7 @@ Scope: Android launcher source, manifest, build configuration, and emulator-read
 
 The initial implementation was a compact Compose prototype with launcher discovery, a fixed tile grid, and a basic app list. The audit found that activity discovery ran only at startup, app activities could be collapsed by package name, tile layout and theme were fixed, there was no persistent settings model, and the primary UI was concentrated in one activity. It also had no automated tests or CI.
 
-The current implementation separates app discovery, tile preferences, data persistence, design tokens, and the launcher screens. The Android 16/API 36 release-candidate check set passes. Wider screen-size, accessibility, keyboard, and physical-device review remain before a production release.
+The current implementation separates app discovery, tile preferences, data persistence, design tokens, and the launcher screens. The Android 17/API 37 release-candidate build is signed and its local lint and unit checks pass. Android 17 emulator smoke testing and GitHub Actions are the final code checks; physical-device review and Play Console account declarations remain outside this repository.
 
 ## 20 improvement areas
 
@@ -34,8 +34,8 @@ The current implementation separates app discovery, tile preferences, data persi
 
 ### Release-candidate checks completed
 
-19. **Verify core runtime behavior.** API 37 preview-emulator review covered the home grid, app drawer, personalization, search, and theme persistence across restart. The Compose smoke test opens the required Apps tile, searches, and clears the query.
-20. **Automate release checks.** GitHub Actions runs lint, unit tests, a debug build, and the Compose smoke test on a stable API 36 emulator. The same instrumentation test also passes locally on API 37 after pinning Espresso 3.7.0, which replaces a removed reflective `InputManager.getInstance` call.
+19. **Verify core runtime behavior.** Release-candidate review on Android 17/API 37 covered the home grid, app drawer, personalization, and privacy disclosure. The Compose smoke test opens the Apps area, searches, and clears the query; it passes on the API 37 emulator.
+20. **Automate release checks.** GitHub Actions is configured to run lint, unit tests, a debug build, a minified release bundle, and the Compose smoke test on an API 37 Google APIs emulator. The latest workflow result is recorded after this change is pushed.
 
 Broader validation remains: Home-app selection, all external intents, Back behavior, wide layouts, keyboard navigation, accessibility review, and physical devices.
 
@@ -45,4 +45,4 @@ The most relevant Metro-specific repository found was GridLauncher (112 stars at
 
 ## Validation record
 
-The latest local `:app:testDebugUnitTest`, `:app:lintDebug`, `:app:assembleDebug`, `:app:compileDebugAndroidTestKotlin`, and `:app:connectedDebugAndroidTest` checks pass. GitHub Actions is green for both the local checks and stable API 36 emulator smoke test. Lint reports one warning for the version qualifier on the adaptive icon resources. Manual API 37 preview-emulator review covered home, app drawer, personalization, and theme persistence across an app restart; the instrumented smoke test also passes there with Espresso 3.7.0. This is a launcher release candidate, not a Play Store release: signing, store policy review, privacy disclosures, release assets, and wider device validation remain.
+The latest local `:app:lintDebug`, `:app:testDebugUnitTest`, `:app:assembleRelease`, and `:app:bundleRelease` checks pass on API 37. Lint reports no errors and two expected monochrome-icon warnings for the Android 12 base icon; the Android 13+ resource variant includes the monochrome layer. The connected smoke test passes on the Android 17/API 37 emulator. The API 37 GitHub Actions result will be recorded after this change is pushed. The signed release bundle and listing assets are prepared; Play Console declarations, physical-device review, and the account-specific testing track remain before production release.

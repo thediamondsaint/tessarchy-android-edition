@@ -56,9 +56,11 @@ import org.tessarchy.tae.ui.theme.MetroPalette
 fun AppDrawer(
     apps: List<LaunchableApp>,
     isLoading: Boolean,
+    hasInventoryConsent: Boolean,
     palette: MetroPalette,
     onBack: () -> Unit,
     onLaunch: (android.content.ComponentName) -> Unit,
+    onRequestInventoryConsent: () -> Unit,
 ) {
     var query by rememberSaveable { mutableStateOf("") }
     val filteredApps = remember(apps, query) {
@@ -146,7 +148,30 @@ fun AppDrawer(
         }
 
         Spacer(Modifier.height(11.dp))
-        if (filteredApps.isEmpty()) {
+        if (!hasInventoryConsent) {
+            Column(
+                modifier = Modifier.weight(1f).fillMaxWidth(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                androidx.compose.material3.Text(
+                    text = stringResource(R.string.apps_consent_required_title),
+                    color = palette.text,
+                    fontSize = 17.sp,
+                    fontWeight = FontWeight.SemiBold,
+                )
+                androidx.compose.material3.Text(
+                    text = stringResource(R.string.apps_consent_required_body),
+                    color = palette.muted,
+                    fontSize = 13.sp,
+                    lineHeight = 19.sp,
+                    modifier = Modifier.padding(top = 8.dp, bottom = 16.dp),
+                )
+                androidx.compose.material3.Button(onClick = onRequestInventoryConsent) {
+                    androidx.compose.material3.Text(stringResource(R.string.app_inventory_review))
+                }
+            }
+        } else if (filteredApps.isEmpty()) {
             val message = when {
                 isLoading -> stringResource(R.string.apps_loading)
                 query.isBlank() -> stringResource(R.string.apps_empty)

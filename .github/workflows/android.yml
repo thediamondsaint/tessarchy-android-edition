@@ -21,9 +21,9 @@ jobs:
       - uses: gradle/actions/setup-gradle@v5
       - uses: android-actions/setup-android@v4
       - name: Install Android SDK packages
-        run: sdkmanager 'platforms;android-36' 'build-tools;36.0.0'
+        run: sdkmanager 'platforms;android-37.0' 'build-tools;37.0.0'
       - name: Run local checks
-        run: ./gradlew :app:lintDebug :app:testDebugUnitTest :app:assembleDebug
+        run: ./gradlew :app:lintDebug :app:testDebugUnitTest :app:assembleDebug :app:bundleRelease
 
   emulator:
     name: Compose smoke test on Android emulator
@@ -44,7 +44,7 @@ jobs:
       - name: Run launcher UI test
         uses: ReactiveCircus/android-emulator-runner@v2
         with:
-          api-level: 36
+          api-level: 37
           target: google_apis
           arch: x86_64
           profile: pixel_2

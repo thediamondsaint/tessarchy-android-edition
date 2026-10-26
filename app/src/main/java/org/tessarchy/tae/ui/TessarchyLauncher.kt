@@ -11,6 +11,9 @@ import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.background
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
@@ -22,7 +25,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
@@ -33,14 +38,18 @@ import org.tessarchy.tae.data.LauncherPreferencesRepository
 import org.tessarchy.tae.launcher.LaunchableApp
 import org.tessarchy.tae.launcher.LauncherPreferences
 import org.tessarchy.tae.ui.theme.MetroPalette
+import androidx.compose.ui.res.stringResource
+import org.tessarchy.tae.R
 import java.time.LocalDateTime
 
-private enum class Destination { Home, Apps, Personalize, Tessa }
+private enum class Destination { Home, Apps, Personalize, Privacy, Tessa }
 
 @Composable
 fun TessarchyLauncher(
     installedApps: StateFlow<List<LaunchableApp>>,
     appsLoading: StateFlow<Boolean>,
+    appInventoryConsent: StateFlow<Boolean>,
+    onAppInventoryConsentChanged: (Boolean) -> Unit,
     onLaunchApp: (ComponentName) -> Unit,
     onLaunchIntent: (Intent) -> Unit,
 ) {
@@ -48,12 +57,22 @@ fun TessarchyLauncher(
     val repository = remember(context) { LauncherPreferencesRepository.from(context) }
     val appList by installedApps.collectAsState()
     val isLoading by appsLoading.collectAsState()
+    val hasAppInventoryConsent by appInventoryConsent.collectAsState()
     val scope = rememberCoroutineScope()
     val homeGridState = rememberLazyGridState()
     var preferences by remember { mutableStateOf(LauncherPreferences()) }
     var destination by remember { mutableStateOf(Destination.Home) }
     var isArranging by remember { mutableStateOf(false) }
     var currentTime by remember { mutableStateOf(LocalDateTime.now()) }
+    var showAppInventoryDisclosure by rememberSaveable { mutableStateOf(false) }
+    var hasShownInitialDisclosure by rememberSaveable { mutableStateOf(false) }
+
+    LaunchedEffect(hasAppInventoryConsent) {
+        if (!hasAppInventoryConsent && !hasShownInitialDisclosure) {
+            showAppInventoryDisclosure = true
+            hasShownInitialDisclosure = true
+        }
+    }
 
     LaunchedEffect(repository) {
         repository.preferences.collect { preferences = it }
@@ -72,20 +91,54 @@ fun TessarchyLauncher(
         if (palette.lightSystemBars) {
             lightColorScheme(
                 primary = palette.mint,
+                onPrimary = Color.White,
+                primaryContainer = palette.mint.copy(alpha = 0.16f),
+                onPrimaryContainer = palette.text,
                 secondary = palette.calendar,
+                onSecondary = Color.White,
+                secondaryContainer = palette.calendar,
+                onSecondaryContainer = Color.White,
+                tertiary = palette.tessa,
+                onTertiary = Color.White,
+                tertiaryContainer = palette.tessa,
+                onTertiaryContainer = Color.White,
                 background = palette.backgroundBottom,
-                surface = palette.surface,
                 onBackground = palette.text,
+                surface = palette.surface,
                 onSurface = palette.text,
+                surfaceVariant = palette.surface,
+                onSurfaceVariant = palette.muted,
+                outline = palette.muted,
+                outlineVariant = palette.muted.copy(alpha = 0.35f),
+                surfaceTint = palette.mint,
+                inverseSurface = palette.text,
+                inverseOnSurface = palette.backgroundBottom,
             )
         } else {
             darkColorScheme(
                 primary = palette.mint,
+                onPrimary = palette.backgroundBottom,
+                primaryContainer = palette.mint,
+                onPrimaryContainer = palette.backgroundBottom,
                 secondary = palette.calendar,
+                onSecondary = Color.White,
+                secondaryContainer = palette.calendar,
+                onSecondaryContainer = Color.White,
+                tertiary = palette.tessa,
+                onTertiary = Color.White,
+                tertiaryContainer = palette.tessa,
+                onTertiaryContainer = Color.White,
                 background = palette.backgroundBottom,
-                surface = palette.surface,
                 onBackground = palette.text,
+                surface = palette.surface,
                 onSurface = palette.text,
+                surfaceVariant = palette.surface,
+                onSurfaceVariant = palette.muted,
+                outline = palette.muted,
+                outlineVariant = palette.muted.copy(alpha = 0.35f),
+                surfaceTint = palette.mint,
+                inverseSurface = palette.text,
+                inverseOnSurface = palette.backgroundBottom,
             )
         }
     }
@@ -101,6 +154,7 @@ fun TessarchyLauncher(
     BackHandler(enabled = destination != Destination.Home || isArranging) {
         when {
             isArranging -> isArranging = false
+            destination == Destination.Privacy -> destination = Destination.Personalize
             else -> destination = Destination.Home
         }
     }
@@ -139,9 +193,11 @@ fun TessarchyLauncher(
             Destination.Apps -> AppDrawer(
                 apps = appList,
                 isLoading = isLoading,
+                hasInventoryConsent = hasAppInventoryConsent,
                 palette = palette,
                 onBack = { destination = Destination.Home },
                 onLaunch = onLaunchApp,
+                onRequestInventoryConsent = { showAppInventoryDisclosure = true },
             )
 
             Destination.Personalize -> PersonalizeScreen(
@@ -149,10 +205,19 @@ fun TessarchyLauncher(
                 palette = palette,
                 onBack = { destination = Destination.Home },
                 onUpdate = ::updatePreferences,
+                onPrivacy = { destination = Destination.Privacy },
                 onArrange = {
                     isArranging = true
                     destination = Destination.Home
                 },
+            )
+
+            Destination.Privacy -> PrivacyScreen(
+                palette = palette,
+                hasInventoryConsent = hasAppInventoryConsent,
+                onBack = { destination = Destination.Personalize },
+                onInventoryConsentChanged = onAppInventoryConsentChanged,
+                onRequestInventoryConsent = { showAppInventoryDisclosure = true },
             )
 
             Destination.Tessa -> TessaPreviewScreen(
@@ -163,5 +228,34 @@ fun TessarchyLauncher(
             )
             }
         }
+    }
+
+    if (showAppInventoryDisclosure) {
+        AlertDialog(
+            onDismissRequest = { showAppInventoryDisclosure = false },
+            containerColor = palette.surface,
+            titleContentColor = palette.text,
+            textContentColor = palette.muted,
+            title = { androidx.compose.material3.Text(stringResource(R.string.app_inventory_disclosure_title)) },
+            text = { androidx.compose.material3.Text(stringResource(R.string.app_inventory_disclosure_body)) },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                    showAppInventoryDisclosure = false
+                    onAppInventoryConsentChanged(true)
+                    },
+                    colors = ButtonDefaults.textButtonColors(contentColor = palette.mint),
+                ) { androidx.compose.material3.Text(stringResource(R.string.app_inventory_allow)) }
+            },
+            dismissButton = {
+                TextButton(
+                    onClick = {
+                        showAppInventoryDisclosure = false
+                        onAppInventoryConsentChanged(false)
+                    },
+                    colors = ButtonDefaults.textButtonColors(contentColor = palette.muted),
+                ) { androidx.compose.material3.Text(stringResource(R.string.app_inventory_not_now)) }
+            },
+        )
     }
 }

@@ -1,18 +1,17 @@
 <resources>
     <string name="app_name">Tessarchy</string>
     <string name="tessarchy_name_uppercase">TESSARCHY</string>
-    <string name="tessarchy_mark_description">Tessarchy mark</string>
     <string name="tile_tessarchy_description">Tessarchy home</string>
     <string name="tile_calendar_description">Open Calendar for today</string>
-    <string name="calendar_today">Today</string>
     <string name="calendar_title">Calendar</string>
     <string name="phone_title">Phone</string>
     <string name="messages_title">Messages</string>
     <string name="tile_tessa_description">Open the Tessa preview</string>
     <string name="tessa_name">TESSA</string>
-    <string name="tessa_tagline">YOUR DESKTOP, REIMAGINED</string>
     <string name="photos_title">Photos</string>
+    <string name="photos_choose">Choose a photo</string>
     <string name="music_title">Music</string>
+    <string name="message_new">New message</string>
     <string name="apps_title">Apps</string>
     <string name="apps_drawer_title">All apps</string>
     <string name="apps_back">Back to home</string>
@@ -50,8 +49,6 @@
     <string name="apps_search_action">Search installed apps</string>
     <string name="apps_load_failed">Installed apps could not be loaded</string>
     <string name="theme_choice">Use %1$s appearance</string>
-    <string name="tessa_preview_title">Tessa, taking shape</string>
-    <string name="tessa_preview_body">Tessa is the personal layer planned for Tessarchy. This build focuses on a customizable home screen and keeping your Android apps close at hand.</string>
     <string name="tessa_preview_note">Assistant features are not included in this launcher build yet.</string>
     <string name="open_personalize">Open personalization</string>
     <string name="move_tile_before">Move %1$s earlier</string>
@@ -61,4 +58,26 @@
     <string name="compact_tile">Compact</string>
     <string name="edit_done">Done</string>
     <string name="open_drawer">Open app drawer</string>
+    <string name="app_inventory_disclosure_title">Choose whether to enable your app library</string>
+    <string name="app_inventory_disclosure_body">Tessarchy can read launcher app names and icons to build and search your app library. It keeps this list on your phone and does not upload, store, share, or use it for ads. You can turn access off any time in Studio → Privacy &amp; data.</string>
+    <string name="app_inventory_allow">Allow app library</string>
+    <string name="app_inventory_not_now">Not now</string>
+    <string name="app_inventory_review">Review app-list access</string>
+    <string name="app_inventory_turn_off">Turn off app library</string>
+    <string name="apps_consent_required_title">Your app library is off</string>
+    <string name="apps_consent_required_body">Choose whether Tessarchy can read app names and icons from Android to build your searchable app library.</string>
+    <string name="privacy_title">Privacy &amp; data</string>
+    <string name="privacy_intro">Your phone stays yours. Review what Tessarchy reads, where it is used, and how to turn access off.</string>
+    <string name="privacy_and_data">Privacy &amp; data</string>
+    <string name="app_inventory_title">Installed app names and icons</string>
+    <string name="app_inventory_privacy_detail">With your choice, Tessarchy reads launcher app names and icons to power the app drawer and search. It keeps this list in memory while the launcher is open. Tessarchy does not transmit or store this list.</string>
+    <string name="local_data_title">Your layout settings</string>
+    <string name="local_data_detail">Tile order, visibility, size, and theme are saved on this phone. Android may include these preferences in device backup when backup is enabled. Tessarchy has no account, ads, analytics, or network connection in this release.</string>
+    <string name="open_privacy_policy">Read the full privacy policy</string>
+    <string name="privacy_policy_url">https://thediamondsaint.github.io/tessarchy-android-edition/privacy.html</string>
+    <string name="home_app_setup_title">Make Tessarchy your home</string>
+    <string name="home_app_setup_body">Choose Tessarchy in Android’s system dialog to use this Metro home screen whenever you press Home.</string>
+    <string name="home_app_active_title">Tessarchy is your home app</string>
+    <string name="home_app_active_body">Your Tessarchy home screen is ready. You can switch back any time in Android Settings.</string>
+    <string name="set_home_app">Set as home app</string>
 </resources>

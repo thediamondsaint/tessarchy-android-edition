@@ -3,6 +3,7 @@ package org.tessarchy.tae
 import android.content.ComponentName
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.SharedPreferences
 import android.graphics.Canvas
 import android.graphics.drawable.Drawable
 import android.os.Build
@@ -12,6 +13,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.core.content.edit
 import androidx.core.graphics.createBitmap
 import androidx.lifecycle.lifecycleScope
 import androidx.compose.ui.graphics.ImageBitmap
@@ -33,12 +35,15 @@ import java.util.Locale
 class MainActivity : ComponentActivity() {
     private val installedApps = MutableStateFlow<List<LaunchableApp>>(emptyList())
     private val appsLoading = MutableStateFlow(true)
+    private val appInventoryConsent = MutableStateFlow(false)
     private val installedAppsFlow = installedApps.asStateFlow()
     private val appsLoadingFlow = appsLoading.asStateFlow()
+    private val appInventoryConsentFlow = appInventoryConsent.asStateFlow()
     private var refreshJob: Job? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        appInventoryConsent.value = privacyPreferences.getBoolean(KEY_APP_INVENTORY_CONSENT, false)
         val defaultPalette = MetroPalette.forTheme(org.tessarchy.tae.launcher.MetroTheme.Midnight)
         enableEdgeToEdge(
             statusBarStyle = SystemBarStyle.dark(defaultPalette.backgroundTop.toArgb()),
@@ -48,6 +53,8 @@ class MainActivity : ComponentActivity() {
             TessarchyLauncher(
                 installedApps = installedAppsFlow,
                 appsLoading = appsLoadingFlow,
+                appInventoryConsent = appInventoryConsentFlow,
+                onAppInventoryConsentChanged = ::setAppInventoryConsent,
                 onLaunchApp = ::launchApp,
                 onLaunchIntent = ::launchIntent,
             )
@@ -56,6 +63,26 @@ class MainActivity : ComponentActivity() {
 
     override fun onResume() {
         super.onResume()
+        if (!appInventoryConsent.value) {
+            refreshJob?.cancel()
+            installedApps.value = emptyList()
+            appsLoading.value = false
+            return
+        }
+        refreshInstalledApps()
+    }
+
+    private fun setAppInventoryConsent(accepted: Boolean) {
+        privacyPreferences.edit { putBoolean(KEY_APP_INVENTORY_CONSENT, accepted) }
+        appInventoryConsent.value = accepted
+        if (accepted) refreshInstalledApps() else {
+            refreshJob?.cancel()
+            installedApps.value = emptyList()
+            appsLoading.value = false
+        }
+    }
+
+    private fun refreshInstalledApps() {
         refreshJob?.cancel()
         refreshJob = lifecycleScope.launch {
             appsLoading.value = true
@@ -71,6 +98,9 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
+    private val privacyPreferences: SharedPreferences
+        get() = getSharedPreferences(PRIVACY_PREFERENCES, MODE_PRIVATE)
 
     private fun loadLaunchableApps(): List<LaunchableApp> {
         val query = Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER)
@@ -127,3 +157,5 @@ private fun Drawable.toImageBitmap(): ImageBitmap {
 }
 
 private const val MAX_APP_ICON_SIZE = 96
+private const val PRIVACY_PREFERENCES = "privacy_preferences"
+private const val KEY_APP_INVENTORY_CONSENT = "app_inventory_consent"
