@@ -86,10 +86,11 @@ under Android Settings → Default apps → Home app. See the
 
 ## Development order
 
-The next work is to finish emulator checks across screen sizes, add Compose UI
-coverage and CI, and refine accessibility and keyboard navigation. A Play Store
-release will need separate listing, signing, policy, and device-compatibility
-work. The full sequence is maintained in the roadmap.
+The release candidate now passes local unit, lint, build, and Compose smoke checks,
+plus GitHub Actions on stable Android API 36. Next, review wide-screen behavior,
+accessibility, and keyboard navigation on more devices. Play Store submission needs
+separate signing, listing, policy, and device-compatibility work; it is not part of
+this candidate.
 
 ## License
 
